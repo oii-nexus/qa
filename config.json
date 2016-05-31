@@ -1,0 +1,60 @@
+{
+  "type": "network",
+  "version": "0.1.0",
+  "question": [
+    {
+      "id": 0,
+      "desc": "",
+      "data": "LA-sigma-data-20.json",
+      "text": "Q0",
+      "select": 1
+    },
+    {
+      "id": 1,
+      "desc": "",
+      "data": "LA-sigma-data-20.json",
+      "text": "Q1",
+      "select": 2
+    },
+    {
+      "id": 2,
+      "desc": "",
+      "data": "LA-sigma-data-20.json",
+      "text": "Q2",
+      "select": 1
+    }
+  ],
+  "timeLimit": 6000,
+  "features": {
+    "search": true,
+    "hoverBehavior": "default",
+    "groupSelectorAttribute": "color",
+    "clickBehavior":"hide"
+  },
+  "informationPanel": {
+    "groupByEdgeDirection": false,
+    "imageAttribute": "Image File"
+  },
+  "sigma": {
+		"settings":{
+			"defaultLabelColor": "#000",
+			"defaultLabelSize": 14,
+			"defaultLabelBGColor": "#ddd",
+			"defaultHoverLabelBGColor": "#002147",
+			"defaultLabelHoverColor": "#fff",
+			"labelThreshold": 6,
+			"defaultEdgeType": "curve",
+			"hoverFontStyle": "bold",
+			"fontStyle": "bold",
+			"activeFontStyle": "bold",
+			"minNodeSize": 1,
+			"maxNodeSize": 7,
+			"minEdgeSize": 0.2,
+			"maxEdgeSize": 0.5,
+			"minRatio": 0.75, 
+			"maxRatio": 20
+		}
+  }
+}
+
+
