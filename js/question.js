@@ -50,8 +50,10 @@ window.addEventListener('load', function() {
       });
       s.refresh();
     });
-      
-    s.bind('doubleClickNode', function(evt) {
+     
+    
+    //Let's use single click to make it easier to select a node --SAH
+    s.bind('clickNode', function(evt) {
       var thisID = evt.data.node.id;
       if (thisID === track.answer.slice(-1)[0]) return;
       track.answer.push(thisID);
@@ -65,9 +67,21 @@ window.addEventListener('load', function() {
     
     s.bind('clickNode doubleClickNode', function(evt) {
       track.action.push({type: evt.type, id: evt.data.node.id});
-    })
+      //console.log(evt);
+    });
+    
+    s.cameras[0].bind('coordinatesUpdated',function(evt) {
+      //console.log("coordinatesUpdated");
+      //console.log(evt);
+      var state={
+      	x: s.cameras[0].x,
+      	y: s.cameras[0].y,
+      	ratio: s.cameras[0].ratio,
+      	angle: s.cameras[0].angle
+      }
+      track.action.push({type: "zoom/pan",details: state});
+      //console.log(state);
+    });
 
   }
-    
 });
-      
