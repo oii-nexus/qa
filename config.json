@@ -1,6 +1,11 @@
 {
   "type": "network",
   "version": "0.1.0",
+  "instruc": {
+    "preMap": "<b>Instructions</b><br><br>There are five questions. You have 30 seconds to answer each question.<br><br>The first set of questions is on UK geography.",
+    "preNetwork": "The next set of questions is about networks.",
+    "main": "The next set of questions is about a UK-based network."
+  },
   "question": [
     {
       "id": 0,
