@@ -36,7 +36,7 @@ window.addEventListener('load', function() {
         defaultNodeColor: '#ec5148',
         edgeColor: '#fff',
         defaultEdgeColor: '#fff',
-        maxNodeSize: 10,
+        maxNodeSize: 5,
         minNodeSize: 2
       }
     });
@@ -45,8 +45,12 @@ window.addEventListener('load', function() {
       s.graph.edges().forEach(function(edge){ 
         edge.type = "arrow";
       });
+      //TODO: The condition should be randomly set at the start and fixed throughout
+      var condition="pseudo-geo"; //Other options are "geo" and "fr"
       s.graph.nodes().forEach (function(nd) {
-        nd.color = regionColors[nd.region];
+        nd.x=nd.layouts[condition]["x"];
+        nd.y=nd.layouts[condition]["y"];
+        //nd.color = regionColors[nd.region]; //TOOD: Didn't see this until now. Add back in later?
       });
       s.refresh();
     });

@@ -10,21 +10,21 @@
     {
       "id": 0,
       "desc": "",
-      "data": "LA-sigma-data-20.json",
+      "data": "train.json",
       "text": "Q0",
       "select": 1
     },
     {
       "id": 1,
       "desc": "",
-      "data": "LA-sigma-data-20.json",
+      "data": "train.json",
       "text": "Q1",
       "select": 2
     },
     {
       "id": 2,
       "desc": "",
-      "data": "LA-sigma-data-20.json",
+      "data": "train.json",
       "text": "Q2",
       "select": 1
     }
