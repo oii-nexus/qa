@@ -42,9 +42,9 @@ window.addEventListener('load', function() {
     });
 
     sigma.parsers.json(Q.data, s, function() {
-      s.graph.edges().forEach(function(edge){ 
+      /*s.graph.edges().forEach(function(edge){ 
         edge.type = "arrow";
-      });
+      });*/
       //TODO: The condition should be randomly set at the start and fixed throughout
       var condition="pseudo-geo"; //Other options are "geo" and "fr"
       s.graph.nodes().forEach (function(nd) {
