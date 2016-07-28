@@ -29,7 +29,7 @@ HEX = '0123456789abcdef'
 def rgb2hex(r,g,b):
     return format((r<<16)|(g<<8)|b, '06x')
 
-colors={"grey":"#888888","green":"#00FF00","red":"#FF0000","blue":"#0000FF"}
+colors={"grey":"#888888","green":"#00CC00","red":"#FF0000","blue":"#0000FF"}
 
 gexf = xml.dom.minidom.parse(sys.argv[1])
 
