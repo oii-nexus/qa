@@ -29,7 +29,9 @@ HEX = '0123456789abcdef'
 def rgb2hex(r,g,b):
     return format((r<<16)|(g<<8)|b, '06x')
 
-colors={"grey":"#888888","green":"#00CC00","red":"#FF0000","blue":"#0000FF"}
+#['#1b9e77','#d95f02','#7570b3']
+#['#66c2a5','#fc8d62','#8da0cb']
+colors={"green":"#d95f02","red":"#fc8d62","blue":"#66c2a5"}
 
 gexf = xml.dom.minidom.parse(sys.argv[1])
 
@@ -72,7 +74,7 @@ for node in nodes:
 		elif lkey=="color":
 			if val in colors:
 				val=colors[val]
-			jNode[lkey]=val
+				jNode[lkey]=val
 		elif lkey=="id":
 			pass #ignore
 		else:
