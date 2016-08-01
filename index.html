@@ -4,62 +4,46 @@
 <meta charset="utf-8">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <meta http-equiv="Pragma" content="no-cache">
-<meta name="viewport" content="width=device-width,height=device-height,initial-scale=1,user-scalable=no" />
-<meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+<!--<meta name="viewport" content="width=device-width,height=device-height,initial-scale=1,user-scalable=no" />-->
+<!--<meta http-equiv="X-UA-Compatible" content="IE=Edge" />-->
 
 <!-- JavaScript -->
 <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>-->
 <script src="js/sigma.js"></script>
 <script src="js/sigma.parsers.json.js"></script>
-<script src="js/L2-html.js"></script>
-<script src="js/survey.js"></script>
-<script src="js/question.js"></script>
+<script src='js/svg-pan-zoom.min.js'></script>
+<script src="js/jquery-2.2.2.min.js"></script>  <!-- USE CDN VERSION ABOVE WHEN DONE -->
+<script src="js/index.js"></script>
 
 <!--CSS-->
 <link rel="stylesheet" href="css/main.css" type="text/css" media="screen" />
-<!--<link rel="stylesheet" media="screen and (max-height: 770px)" href="css/tablet.css" />-->
 
-<title>&nbsp;</title>
-
+<title>Network Visualization</title>
 </head>
 <body>
+<div id="mask"></div>
 <div id="container">
 	<div id="graph-container"></div>
 </div>
-
 <div id="main-panel">
-	<div class="col">
-		<div id="main-title">
-		  <a href="http://www.oii.ox.ac.uk/">
-		    <img src="images/oii_brand.png" alt="Oxford Internet Institute">
-		  </a>
-		</div>
-		<div id='intro'>
-  		<div id="title">Network Viz Survey</div>
-  		<div id="get-started">Enter your User ID to get started:</div>
-  		<input type="text" id="userid" name="userid" placeholder="User ID" />
-  		<div id="id-submit" class="btn">Submit</div>
-  	</div>
 		<div id="instruc">
-		  <div id="instruc-text"></div>
+		  <div id="instruc-text"></div><br>
 		  <div id="start" class="btn">Start</div>
 		</div>
 		<div id="question">
 		  <div id="question-text"></div>
-		  <div id="submit-answer" class="btn">Submit Answer</div>
+		  <div id="question-var"></div><br>
       <div id="timer">
         <div id="elapsed"></div> 
       </div>		
 		</div>
-		<div id="finished">
-		  <div id="finished-text">
-		    All questions complete. Thank you for taking part.<br><br>Use this code to claim your money:
-		  </div>
-		  <div id="reference"></div>
-		</div>
-		
-	</div>	
 </div>
-
 </body>
 </html>
+
+
+
+
+
+
+

@@ -1,45 +1,57 @@
 {
   "type": "network",
   "version": "0.1.0",
-  "instruc": {
-    "preMap": "<b>Instructions</b><br><br>There are five questions. You have 30 seconds to answer each question.<br><br>The first set of questions is on UK geography.",
-    "preNetwork": "The next set of questions is about networks.",
-    "main": "The next set of questions is about a UK-based network."
-  },
-  "question": [
+  "section": [
     {
-      "id": 0,
-      "desc": "",
-      "data": "train.json",
-      "text": "Q0",
-      "select": 1
+      "name": "pretestMap",
+      "instruc": "The first set of questions is on UK geography.",
+      "rep": 3,
+      "question": "Click on the following city:",
+      "data": "map.txt"
     },
     {
-      "id": 1,
-      "desc": "",
-      "data": "train.json",
-      "text": "Q1",
-      "select": 2
+      "name": "favoriteColor",
+      "instruc": "Example section to check buttons work.",
+      "rep": 2,
+      "question": "Select this color:",
+      "data": ""
     },
     {
-      "id": 2,
-      "desc": "",
-      "data": "train.json",
-      "text": "Q2",
-      "select": 1
+      "name": "????",
+      "instruc": "Instructions for first pre-test network questions.",
+      "rep": 1,
+      "question": "Text for first pre-test network questions.",
+      "data": ""
+    },
+    {
+      "name": "????",
+      "instruc": "Instructions for second pre-test network questions.",
+      "rep": 1,
+      "question": "Text for second pre-test network questions.",
+      "data": ""
+    },
+    {
+      "name": "????",
+      "instruc": "Instructions for first main questions.",
+      "rep": 1,
+      "question": "Text for first main questions.",
+      "data": ""
+    },
+    {
+      "name": "????",
+      "instruc": "Instructions for second main questions.",
+      "rep": 1,
+      "question": "Text for second main questions.",
+      "data": ""
     }
   ],
-  "timeLimit": 6000,
-  "features": {
-    "search": true,
-    "hoverBehavior": "default",
-    "groupSelectorAttribute": "color",
-    "clickBehavior":"hide"
-  },
-  "informationPanel": {
-    "groupByEdgeDirection": false,
-    "imageAttribute": "Image File"
-  },
+  "place": ["Cardiff","Edinburgh","Glasgow","Newcastle","Manchester", "Liverpool",
+            "Leeds","Sheffield","Birmingham","Leicester","Bristol","Southampton"],
+  "pair": [
+      ["Norwich","Ipswich"],
+      ["Oxford","Cambridge"]
+  ],
+  "timeLimit": 4000,
   "sigma": {
 		"settings":{
 			"defaultLabelColor": "#000",
@@ -61,5 +73,6 @@
 		}
   }
 }
+
 
 
