@@ -14,14 +14,16 @@
 <script src="../js/sigma.min.js"></script>
 <script src="../js/sigma.parsers.json.min.js"></script>
 <script>
-  //sigma.parsers.json('degree/pretest_degree_01.json', {
-  sigma.parsers.json('path/pretest_path_01.json', {
+  sigma.parsers.json('degree/pretest_degree_04.json', {
+  //sigma.parsers.json('path/pretest_path_05.json', {
     container: 'container',
     settings: {
-      defaultNodeColor: '#ec5148',
+      defaultNodeColor: '#BBBBBB',
+      defaultEdgeColor: '#AAAAAA',
+      edgeColor: 'default',
       labelThreshold: 100,
-      minNodeSize: 5,
-      maxNodeSize: 5
+      minNodeSize: 8,
+      maxNodeSize: 8
     }
   });
 </script>

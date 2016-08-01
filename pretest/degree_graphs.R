@@ -4,7 +4,7 @@ N<-25
 output<-data.frame(blue=rep(NA,N),red=rep(NA,N))
 for (i in seq(N)) {
 
-	g<-sample_smallworld(1,30,3,0.05)
+	g<-sample_smallworld(1,15,3,0.1)
 	V(g)$color<-"grey"
 	V(g)$degree<-degree(g)
 	#quantiles<-quantile(V(g)$degree,probs=c(.2,.8),na.rm=TRUE)
@@ -29,7 +29,8 @@ for (i in seq(N)) {
 
 	#layout<-layout_with_kk(g)
 	#See ?igraph.plotting for options to plot
-	layout<-layout_randomly(g) #Don't precondition to force-directed layouts
+	#layout<-layout_randomly(g) #Don't precondition to force-directed layouts
+	layout<-layout_with_fr(g) 
 	xlim<-c(min(layout[,1]),max(layout[,1]))
 	ylim<-c(min(layout[,2]),max(layout[,2]))
 	plot(g,layout=layout,asp=9/16,margin=-0.15,xlim=xlim,ylim=ylim,rescale=FALSE,vertex.size=5,vertex.label=NA)

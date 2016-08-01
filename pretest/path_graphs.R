@@ -1,12 +1,12 @@
 library(igraph)
 
 N<-25
-dists<-sample(c(1,2,3,4),25,replace=TRUE)
+dists<-sample(c(1,2,3),25,replace=TRUE)
 output<-data.frame(i=seq(N),distance=dists)
 
 for (i in seq(N)) {
 
-	g<-sample_smallworld(1,30,3,0.05)
+	g<-sample_smallworld(1,15,3,0.1)
 	V(g)$color<-"grey"
 	color<-"green"
 	
@@ -33,7 +33,8 @@ for (i in seq(N)) {
 
 	#layout<-layout_with_kk(g)
 	#See ?igraph.plotting for options to plot
-	layout<-layout_randomly(g) #Don't precondition to force-directed layouts
+	#layout<-layout_randomly(g) #Don't precondition to force-directed layouts
+	layout<-layout_with_fr(g) 
 	xlim<-c(min(layout[,1]),max(layout[,1]))
 	ylim<-c(min(layout[,2]),max(layout[,2]))
 	plot(g,layout=layout,asp=9/16,margin=-0.15,xlim=xlim,ylim=ylim,rescale=FALSE,vertex.size=5,vertex.label=NA)
