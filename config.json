@@ -10,25 +10,18 @@
       "data": "map.txt"
     },
     {
-      "name": "favoriteColor",
-      "instruc": "Example section to check buttons work.",
-      "rep": 2,
-      "question": "Select this color:",
-      "data": ""
+      "name": "pretestDegree",
+      "instruc": "When looking at a network, \"degree\" refers to the extent to which a node (circle) is connected to other nodes. So, a node with many edges (lines) to other nodes is said to have high degree.",
+      "rep": 3,
+      "question": "Looking at the blue and red nodes (circles) in the network, which node has a higher degree?",
+      "data": "pretest_degree.json"
     },
     {
-      "name": "????",
-      "instruc": "Instructions for first pre-test network questions.",
+      "name": "pretestPathLength",
+      "instruc": "It is often useful to know the distance between two nodes (circles). For networks, this is usually reported as the number of edges (lines) between two nodes. So, two nodes directly connected are said to have a distance of 1. If is only possible to go from one node to another through a third node, then this is distance 2 (A->B->C). If it is only possible to go from one node to another through two additional nodes, this is distance 3 (A->B->C->D).",
       "rep": 1,
-      "question": "Text for first pre-test network questions.",
-      "data": ""
-    },
-    {
-      "name": "????",
-      "instruc": "Instructions for second pre-test network questions.",
-      "rep": 1,
-      "question": "Text for second pre-test network questions.",
-      "data": ""
+      "question": "What is the distance between the two orange nodes?",
+      "data": "pretest_path_length.json"
     },
     {
       "name": "????",
