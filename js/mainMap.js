@@ -18,12 +18,21 @@ $(function(){
 		 maxNodeSize: 4
 		}
 	});
+	sigma.utils.logger(sig);
+	
+	sig.bind('clickNode', function(evt) {
+		mask.timer();
+		currentQ.answer = evt.data.node.id;
+     });
 
 	var targets = shuffle.array(config.place).slice(0,section.rep);
 	var t;
 	nextQ = function() {
 		if (targets.length > 0) { //more questions in this section
 			t = targets.shift();    //pop new target answer off front of tagets array
+			
+			//set up log for new question
+			currentQ = {target: t, action: [], condition: CONDITION};
 
 			//Load/Refresh the network	   
 			sig.graph.clear();
@@ -33,8 +42,8 @@ $(function(){
 				n.y=n.layouts[CONDITION].y;
 			});
 			sig.refresh();
-			//set up log for new question
-			currentQ = {target: t, action: [], condition: CONDITION};
+			sig.cameras[0].goTo({"x":0,"y":0,"angle":0,"ratio":1}); //recenter and zoom
+			
 			$('#question-var').html(t);
 			startQ(nextQ);  //ask new question - startQ will call nextQ ...
 		}
