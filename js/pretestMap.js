@@ -15,10 +15,7 @@ $(function(){
     mask.off();
     
     //map pan and zoom
-    function onPanZoom(z) {
-    	if (currentQ && currentQ.action)
-    		currentQ.action.push(z)
-    	}
+    function onPanZoom(z) {currentQ.action.push(z);}
     var panZoomMap = svgPanZoom('#map',  //zoom options:
       { viewportSelector: '.svg-pan-zoom_viewport'
       , dblClickZoomEnabled: false
@@ -67,12 +64,14 @@ $(function(){
     var targets = shuffle.array(config.place).slice(0,section.rep);
     nextQ = function() {
       if (targets.length > 0) { //not finished questions in this section
-      
-      
-	   panZoomMap.fit();
-        panZoomMap.center();
+
+		var tg = targets.shift();      
+		currentQ = {target: tg, action: []};  //set up log for new question
+		panZoomMap.fit();
+		panZoomMap.center();
+		currentQ = {target: tg, action: []};  //reset after fitting/centering map
         
-        var tg = targets.shift();
+
         currentQ = {target: tg, action: []};  //set up log for new question
         $('#question-var').html(tg);           //show new question
         startQ(nextQ);  //ask new question (startQ will call nextQ ...)
