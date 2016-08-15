@@ -2,7 +2,7 @@
 $(function(){
 	//Load data callback
 	$.get(section.data, function(data) {
-		$('#question-text').html(section.question);
+		$('#question-text').html("");
 		mask.off();
 
 		var sig = new sigma({
@@ -32,7 +32,7 @@ $(function(){
 				sig.refresh();
 				//set up log for new question
 				currentQ = {target: data[t]["name"], action: []};
-				$('#question-var').html("What is the distance between the two orange nodes?");
+				$('#question-var').html(section.question);
 				addButtons(['1','2','3','4','Other']);   //show answer buttons
 				startQ(nextQ);  //ask new question - startQ will call nextQ ...
 			}

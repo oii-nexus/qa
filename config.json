@@ -13,7 +13,8 @@
       "name": "pretestDegree",
       "instruc": "When looking at a network, \"degree\" refers to the extent to which a node (circle) is connected to other nodes. So, a node with many edges (lines) to other nodes is said to have high degree.",
       "rep": 3,
-      "question": "Looking at the blue and red nodes (circles) in the network, which node has a higher degree?",
+      "question": "Look at the green and orange nodes (circles) in the network:",
+      "question2": "Which node has a higher degree (more connections)?",
       "data": "pretest_degree.json"
     },
     {
@@ -41,7 +42,8 @@
       "name": "mainDegree",
       "instruc": "When looking at a network, \"degree\" refers to the extent to which a node (circle) is connected to other nodes. So, a node with many edges (lines) to other nodes is said to have high degree.",
       "rep": 3,
-      "question": "Looking at the blue and red nodes (circles) in the network, which node has a higher degree?",
+      "question": "Look at the green and orange nodes (circles) in the network:",
+      "question2": "Which node has a higher degree (more connections)?",
       "targets":[["Manchester","London"],["Birmingham","Leeds"],["York","Leicester"]]
     },
     {
@@ -57,7 +59,7 @@
       ["Norwich","Ipswich"],
       ["Oxford","Cambridge"]
   ],
-  "timeLimit": 4000,
+  "timeLimit": 6000,
   "sigma": {
 		"settings":{
 			"defaultLabelColor": "#000",

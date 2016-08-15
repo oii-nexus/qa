@@ -1,6 +1,6 @@
 //callback for mainPathLength section
 $(function(){
-	$('#question-text').html(section.question);
+	$('#question-text').html("");
 	mask.off();
 
 	var sig = new sigma({
@@ -42,7 +42,7 @@ $(function(){
 			sig.refresh();
 			sig.cameras[0].goTo({"x":0,"y":0,"angle":0,"ratio":1}); //recenter and zoom
 			
-			$('#question-var').html("");
+			$('#question-var').html(section.question);
 			addButtons(['1','2','3','4','Other']);   //show answer buttons
 			startQ(nextQ);  //ask new question - startQ will call nextQ ...
 		}

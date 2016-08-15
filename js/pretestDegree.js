@@ -32,7 +32,7 @@ $(function(){
 				sig.refresh();
 				//set up log for new question
 				currentQ = {target: data[t]["name"], action: []};
-				$('#question-var').html("");             //show new question
+				$('#question-var').html(section.question2);             //show new question
 				addButtons(['Orange','Green','I don\'t know']);   //show answer buttons
 				startQ(nextQ);  //ask new question - startQ will call nextQ ...
 			}
