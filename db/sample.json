@@ -1,0 +1,8 @@
+{ 
+	"userid": "asdfasdf",
+	"section": "intro",
+	"payload": {
+		"detected_userid":"test",
+		"submitted_userid":"test2"
+	}
+}

@@ -100,8 +100,9 @@ $(function(){
     
     finishSection = function() {
       $('#graph-container').html('');
-      track[section.name] = {section: section, questions: questions}; //log section results
-      //TODO: Send data to server here?
+      //track[section.name] = {section: section, questions: questions}; //log section results
+      //Send data for section to server
+      dblogger(USER_ID,section,questions);
       nextSection();
     };
     
@@ -126,6 +127,27 @@ $(function(){
     });
     //nextSection();  //start first section 
 
+	//Function to send data to server for storage in database
+     dblogger = function(userid,section,payload) {
+     	var params={
+     		"userid":userid,
+     		"section":section,
+     		"payload":JSON.stringify(payload)
+     	};
+     	console.log("Sending data");
+     	console.log(params);
+     	//jQuery.getJSON("db/log.php", params, function(resp) {
+     	//	console.log(resp);
+     	//});
+     	$.ajax({
+                url : 'db/log.php',
+                type: 'POST',
+                data: params,
+                success: function(resp) {
+                	console.log(resp);
+                }
+          });
+     };
     
     //Get userid
      $('#intro').show();
@@ -133,17 +155,14 @@ $(function(){
     	$("#introbtn").click(function() {
     		//LOG
     		var uid=$("#userid").val();
+		//Log on server
+		dblogger(uid,"intro",{"detected_userid":USER_ID,"submitted_userid":uid});
     		if (uid!=USER_ID) {
-    			//TODO: Log on server
     			USER_ID=uid;
     		}
-    		console.log(USER_ID);
-    		nextSection();
 	     $('#intro').hide();
+    		nextSection();
     	});
-    	
-    		
-    
       
   });
 })
