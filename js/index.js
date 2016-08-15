@@ -46,8 +46,11 @@ $(function(){
       timer: function() {  //show mask - wait for timer to finish message
         $('#mask').html('Please wait, the survey will continue when the timer runs out.').show();
       },
+      newq: function() {
+      	$('#mask').append('<br/><br/><strong>Ready for the next question? Please click anywhere to continue.</strong>').show();
+      },
       off: function() {    //hide mask
-        $('#mask').hide();
+        $('#mask').html("").hide();
       }
     };
     shuffle = {             
@@ -78,14 +81,21 @@ $(function(){
       setTimeout( function() {
         questions.push(currentQ);
         clearInterval(id);
-        nextQ();
+        //Blank screen
+        mask.newq();
+        //$('#question-var').html(
+        //  'Ready for the next question? Please click "Continue" below for the next question.<br><br><div id="continue" class="btn">Continue</div>');
+        $("#mask").click(function() {
+        	$("#mask").off();
+        	nextQ();
+        });
       }, config.timeLimit );
     }
     
     finishSection = function() {
       $('#graph-container').html('');
       track[section.name] = {section: section, questions: questions}; //log section results
-      //push data here???
+      //TODO: Send data to server here?
       nextSection();
     };
     
