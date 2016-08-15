@@ -18,6 +18,11 @@
 $(function(){
   
   $.get('config.json', function(cf) {
+  
+    
+    getQueryStringValue = function(key) {  
+	return unescape(window.location.search.replace(new RegExp("^(?:.*[&\\?]" + escape(key).replace(/[\.\+\*]/g, "\\$&") + "(?:\\=([^&]*))?)?.*$", "i"), "$1"));  
+    }
     
     // !!variables are globals on purpose!!
     
@@ -27,6 +32,7 @@ $(function(){
   	currentQ =  {};   //current question - pushed onto questions when done
     questions = [];   //questions for current section - pushed onto track when section done
   	track =     {};   //log of all questions, actions and answers
+  	USER_ID = getQueryStringValue("prolific_pid");
     
     //useful functions 
     addButtons = function(answers) {  //append buttons to answer-var elmt
@@ -118,7 +124,26 @@ $(function(){
       $('#question').show();
       $.getScript('js/' + section.name + '.js');
     });
-    nextSection();  //start first section 
+    //nextSection();  //start first section 
+
+    
+    //Get userid
+     $('#intro').show();
+	$("#userid").val(USER_ID);
+    	$("#introbtn").click(function() {
+    		//LOG
+    		var uid=$("#userid").val();
+    		if (uid!=USER_ID) {
+    			//TODO: Log on server
+    			USER_ID=uid;
+    		}
+    		console.log(USER_ID);
+    		nextSection();
+	     $('#intro').hide();
+    	});
+    	
+    		
+    
       
   });
 })

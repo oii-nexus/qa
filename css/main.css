@@ -44,7 +44,7 @@ html,body {
 .btn:active {
   background-color: #ccc;
 }
-#instruc, #question, #finished {
+#instruc, #question, #finished, #intro {
   display:none;
 }
 #question-var {
