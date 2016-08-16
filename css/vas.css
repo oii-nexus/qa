@@ -1,0 +1,38 @@
+.vas-scale {
+	float: left;
+	width: 300px;
+	margin: 0;
+	height: 30px;
+	cursor:pointer;
+}
+
+.vas-line {
+	float: left;
+	width: 100%;
+	margin-top: 16px;
+	height: 2px;
+	background-color: #000;
+}
+.vas-label {
+	float: left;
+	height: 10px;
+	margin: 10px;
+
+}
+.vas {
+	margin: 15px;
+	height: 30px;
+	clear: both;
+}
+
+.vas-dot {
+	display: none;
+	width: 16px;
+	height: 16px;
+	margin:0;
+	margin-top: 8px;
+	background-color: #000;
+	-moz-border-radius: 8px;
+	-webkit-border-radius: 8px;
+	border-radius: 8px;
+}

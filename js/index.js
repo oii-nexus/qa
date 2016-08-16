@@ -102,7 +102,7 @@ $(function(){
       $('#graph-container').html('');
       //track[section.name] = {section: section, questions: questions}; //log section results
       //Send data for section to server
-      dblogger(USER_ID,section,questions);
+      dblogger(USER_ID,section.name,questions);
       nextSection();
     };
     
@@ -110,8 +110,9 @@ $(function(){
       questions = [];
       $('#question, #mask').hide();     
       if (config.section.length === 0) {
-        $('#instruc-text').html('Finished, thank you, show code.');
-        $('#start').hide();
+        //$('#instruc-text').html('Finished, thank you, show code.');
+        //$('#start').hide();
+        window.location.href = "postq.php?prolific_pid="+USER_ID;
       }
       else {
         section = config.section.shift();  //global
