@@ -24,29 +24,29 @@ $(function(){
 	return unescape(window.location.search.replace(new RegExp("^(?:.*[&\\?]" + escape(key).replace(/[\.\+\*]/g, "\\$&") + "(?:\\=([^&]*))?)?.*$", "i"), "$1"));  
     }
     
-    // !!variables are globals on purpose!!
+	// !!variables are globals on purpose!!
     
-    //data structures
-    config = cf;      //object corresponding to config.json
-  	section = '';     //current entry from config.section
-  	currentQ =  {};   //current question - pushed onto questions when done
-    questions = [];   //questions for current section - pushed onto track when section done
-  	track =     {};   //log of all questions, actions and answers
-  	USER_ID = getQueryStringValue("prolific_pid");
+	//data structures
+	config = cf;      //object corresponding to config.json
+	section = '';     //current entry from config.section
+	currentQ =  {};   //current question - pushed onto questions when done
+	questions = [];   //questions for current section - pushed onto track when section done
+	track =     {};   //log of all questions, actions and answers
+	USER_ID = getQueryStringValue("prolific_pid");
     
-    //useful functions 
+	//useful functions 
     
 	recordAnswer = function(ans) {
 		if (timeoutId) clearTimeout(timeoutId);
-		mask.timer();
 		currentQ.answer = ans;
 		currentQ.endTime=Date.now();
 		questions.push(currentQ);
 		if (currentQ.endTime-currentQ.startTime<config.minTime) {
-		setTimeout(function() {
-			if (timerId) clearInterval(timerId);
-			mask.newq();
-		 },config.minTime-(Date.now()-currentQ.startTime));
+			mask.timer();
+			setTimeout(function() {
+				if (timerId) clearInterval(timerId);
+				mask.newq();
+			 },config.minTime-(Date.now()-currentQ.startTime));
 		} else {
 			//Bad design - repeat code
 			if (timerId) clearInterval(timerId);
@@ -64,6 +64,7 @@ $(function(){
       });
     };
     mask = {
+      nextQ: function(){},
       data: function() {   //show mask - loading data message
         $('#mask').html('Please wait, loading data.').show();
       },
@@ -72,9 +73,9 @@ $(function(){
       },
       newq: function() {
       	$('#mask').append('<br/><br/><strong>Ready for the next question? Please click anywhere to continue.</strong>').show().click(function() {
-      		console.log("mask clikc");
-	        	mask.off();
-     	   	nextQ();
+	        	$("#mask").off();//Remove the event handler
+	        	mask.off(); //Blank and hide the mask
+     	   	mask.nextQ();
         	});
       },
       off: function() {    //hide mask
@@ -97,15 +98,16 @@ $(function(){
       }
     };
     
+    updateTimer=function (timeStarted) {
+        $("#elapsed").width((Date.now() - timeStarted)/config.maxTime*100 + '%');
+    };
     var timerId,timeoutId;
     //functions for stepping through questions and sections
     startQ = function(nextQ) {  //nextQ is func to get next question, it calls startQ ...
       mask.off();
-      var $elapsed = $('#elapsed');
-      function updateTimer(timeStarted) {
-        $elapsed.width((Date.now() - timeStarted)/config.maxTime*100 + '%');
-      }  
-      $elapsed.width('0%');
+      mask.nextQ=nextQ;
+      var elapsed = $('#elapsed');
+      elapsed.width('0');
       timerId = setInterval(updateTimer, 250, Date.now());
       timeoutId=setTimeout( function() {
         recordAnswer("TIMEOUT");
