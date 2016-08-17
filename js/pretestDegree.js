@@ -20,6 +20,7 @@ $(function(){
 			 maxNodeSize: 8
 			}
 		});
+		sigma.utils.logger(sig);
 
 		var targets = shuffle.array([0,1,2]),t;
 		nextQ = function() {
@@ -32,6 +33,8 @@ $(function(){
 				sig.refresh();
 				//set up log for new question
 				currentQ = {target: data[t]["name"], action: []};
+				sig.cameras[0].goTo({"x":0,"y":0,"angle":0,"ratio":1}); //recenter and zoom
+				currentQ.action=[]; //Reset to get clear the actions of the recenter/zoom
 				$('#question-var').html(section.question2);             //show new question
 				addButtons(['Orange','Green','I don\'t know']);   //show answer buttons
 				startQ(nextQ);  //ask new question - startQ will call nextQ ...

@@ -42,6 +42,7 @@ $(function(){
 			});
 			sig.refresh();
 			sig.cameras[0].goTo({"x":0,"y":0,"angle":0,"ratio":1}); //recenter and zoom
+			currentQ.action=[]; //Reset to clear recenter/zoom actions
 			
 			$('#question-var').html(section.question2);             //show new question
 			addButtons(['Orange','Green','I don\'t know']);   //show answer buttons

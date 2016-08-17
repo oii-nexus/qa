@@ -24,6 +24,15 @@ $(function(){
 		mask.timer();
 		currentQ.answer = evt.data.node.id;
      });
+     
+	//Load/Refresh the network	   
+	sig.graph.clear();
+	sig.graph.read(TRAIN_DATA);
+	sig.graph.nodes().forEach(function(n) {
+		n.x=n.layouts[CONDITION].x;
+		n.y=n.layouts[CONDITION].y;
+	});
+	sig.refresh();
 
 	var targets = shuffle.array(config.place).slice(0,section.rep);
 	var t;
@@ -33,16 +42,8 @@ $(function(){
 			
 			//set up log for new question
 			currentQ = {target: t, action: [], condition: CONDITION};
-
-			//Load/Refresh the network	   
-			sig.graph.clear();
-			sig.graph.read(TRAIN_DATA);
-			sig.graph.nodes().forEach(function(n) {
-				n.x=n.layouts[CONDITION].x;
-				n.y=n.layouts[CONDITION].y;
-			});
-			sig.refresh();
 			sig.cameras[0].goTo({"x":0,"y":0,"angle":0,"ratio":1}); //recenter and zoom
+			currentQ.action=[]; //Reset to clear recenter/zoom actions
 			
 			$('#question-var').html(t);
 			startQ(nextQ);  //ask new question - startQ will call nextQ ...
