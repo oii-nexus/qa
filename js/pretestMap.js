@@ -54,9 +54,8 @@ $(function(){
     });
     $path.mouseup( function(evt) {
       if (evt.clientX === downXY[0] && evt.clientY === downXY[1]) {
-        mask.timer();
-        pathFill('#bbb');         
-        currentQ.answer = $(this).attr('data-loc_auth');
+        pathFill('#bbb');
+        recordAnswer($(this).attr('data-loc_auth'));
       }
     });
     

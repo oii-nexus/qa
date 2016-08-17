@@ -35,14 +35,32 @@ $(function(){
   	USER_ID = getQueryStringValue("prolific_pid");
     
     //useful functions 
+    
+	recordAnswer = function(ans) {
+		if (timeoutId) clearTimeout(timeoutId);
+		mask.timer();
+		currentQ.answer = ans;
+		currentQ.endTime=Date.now();
+		questions.push(currentQ);
+		if (currentQ.endTime-currentQ.startTime<config.minTime) {
+		setTimeout(function() {
+			if (timerId) clearInterval(timerId);
+			mask.newq();
+		 },config.minTime-(Date.now()-currentQ.startTime));
+		} else {
+			//Bad design - repeat code
+			if (timerId) clearInterval(timerId);
+			mask.newq();
+		}
+	};
+    
     addButtons = function(answers) {  //append buttons to answer-var elmt
       $('#question-var').append('<br><br>');
       for (var a=0; a<answers.length; a++) {
         $('#question-var').append('<div class="btn answer">' + answers[a] + '</div>');
       }
       $('.answer').click( function() {
-        mask.timer();
-        currentQ.answer = $(this).html();
+        recordAnswer($(this).html());
       });
     };
     mask = {
@@ -50,10 +68,14 @@ $(function(){
         $('#mask').html('Please wait, loading data.').show();
       },
       timer: function() {  //show mask - wait for timer to finish message
-        $('#mask').html('Please wait, the survey will continue when the timer runs out.').show();
+        $('#mask').html('Please wait, the survey will continue after the minimum time of ' + (config.minTime/1000) + ' seconds.').show();
       },
       newq: function() {
-      	$('#mask').append('<br/><br/><strong>Ready for the next question? Please click anywhere to continue.</strong>').show();
+      	$('#mask').append('<br/><br/><strong>Ready for the next question? Please click anywhere to continue.</strong>').show().click(function() {
+      		console.log("mask clikc");
+	        	mask.off();
+     	   	nextQ();
+        	});
       },
       off: function() {    //hide mask
         $('#mask').html("").hide();
@@ -75,27 +97,20 @@ $(function(){
       }
     };
     
+    var timerId,timeoutId;
     //functions for stepping through questions and sections
     startQ = function(nextQ) {  //nextQ is func to get next question, it calls startQ ...
       mask.off();
       var $elapsed = $('#elapsed');
       function updateTimer(timeStarted) {
-        $elapsed.width((Date.now() - timeStarted)/config.timeLimit*100 + '%');
+        $elapsed.width((Date.now() - timeStarted)/config.maxTime*100 + '%');
       }  
       $elapsed.width('0%');
-      var id = setInterval(updateTimer, 250, Date.now());
-      setTimeout( function() {
-        questions.push(currentQ);
-        clearInterval(id);
-        //Blank screen
-        mask.newq();
-        //$('#question-var').html(
-        //  'Ready for the next question? Please click "Continue" below for the next question.<br><br><div id="continue" class="btn">Continue</div>');
-        $("#mask").click(function() {
-        	$("#mask").off();
-        	nextQ();
-        });
-      }, config.timeLimit );
+      timerId = setInterval(updateTimer, 250, Date.now());
+      timeoutId=setTimeout( function() {
+        recordAnswer("TIMEOUT");
+      }, config.maxTime );
+      currentQ.startTime=Date.now();
     }
     
     finishSection = function() {

@@ -21,8 +21,7 @@ $(function(){
 	sigma.utils.logger(sig);
 	
 	sig.bind('clickNode', function(evt) {
-		mask.timer();
-		currentQ.answer = evt.data.node.id;
+		recordAnswer(evt.data.node.id);
      });
      
 	//Load/Refresh the network	   

@@ -59,7 +59,8 @@
       ["Norwich","Ipswich"],
       ["Oxford","Cambridge"]
   ],
-  "timeLimit": 6000,
+  "minTime": 10000,
+  "maxTime": 60000,
   "sigma": {
 		"settings":{
 			"defaultLabelColor": "#000",
