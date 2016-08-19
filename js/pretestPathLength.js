@@ -1,9 +1,13 @@
 "use strict";
 
-//callback for pretestDegree section
-$(function(){
+;(function(){
+	if (typeof oiiNexus === 'undefined')
+		throw 'oiiNexus is not declared';
+
+	//callback for pretestPathLength section
+	oiiNexus.pretestPathLength = function() {
 	//Load data callback
-	$.get(section.data, function(data) {
+	$.get(oiiNexus.section.data, function(data) {
 		$('#question-text').html("");
 		mask.off();
 
@@ -24,8 +28,8 @@ $(function(){
 		});
 		sigma.utils.logger(sig);
 
-		var targets = shuffle.array([0,1,2]),t;
-		window.nextQ = function() {
+		var targets = oiiNexus.shuffle.array([0,1,2]),t;
+		oiiNexus.nextQ = function() {
 			if (targets.length > 0) { //more questions in this section
 				t = targets.shift();    //pop new target answer off front of tagets array
 
@@ -34,15 +38,16 @@ $(function(){
 				sig.graph.read(data[t]);
 				sig.refresh();
 				//set up log for new question
-				currentQ = {target: data[t]["name"], action: []};
+				oiiNexus.currentQ = {target: data[t]["name"], action: []};
 				sig.cameras[0].goTo({"x":0,"y":0,"angle":0,"ratio":1}); //recenter and zoom
-				currentQ.action=[];
-				$('#question-var').html(section.question);
-				addButtons(['1','2','3','4','Other']);   //show answer buttons
-				startQ();  //ask new question - startQ will call nextQ ...
+				oiiNexus.currentQ.action=[];
+				$('#question-var').html(oiiNexus.section.question);
+				oiiNexus.addButtons(['1','2','3','4','Other']);   //show answer buttons
+				oiiNexus.startQ();  //ask new question - startQ will call nextQ ...
 			}
-		 		else  finishSection();
+		 		else  oiiNexus.finishSection();
 		}
-		nextQ(); //ask first question
+		oiiNexus.nextQ(); //ask first question
 		});
-});
+	};
+})();

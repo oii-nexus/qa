@@ -9,73 +9,79 @@
 //-check Cambridge/S Cambridge issue on map if relevant
 //-cache path elmts in same loc-auth if too slow selecting on hover
 
-$(function(){
-  $.get(section.data, function(data) {
-    
-    $('#graph-container').html(data).append('<div id="map-hover"><div>').show();
-    $('#question-text').html(section.question);
-    mask.off();
-    
-    //map pan and zoom
-    function onPanZoom(z) {currentQ.action.push(z);}
-    var panZoomMap = svgPanZoom('#map',  //zoom options:
-      { viewportSelector: '.svg-pan-zoom_viewport'
-      , dblClickZoomEnabled: false
-      , preventMouseEventsDefault: true
-      , zoomScaleSensitivity: 0.3
-      , minZoom: 0.9
-      , maxZoom: 25
-      , fit: true
-      , contain: false
-      , center: true
-      , onZoom: onPanZoom
-      , onPan: onPanZoom
-      });
+;(function(){
+	if (typeof oiiNexus === 'undefined')
+		throw 'oiiNexus is not declared';
 
-    //events
-    var $path = $('path'),
-        $mapHover = $('#map-hover'),
-        downXY = [],   //pan fires click - use mousedown/up for click, need posn where mousedown
-        thisLA;
-    function pathFill(color,locAuth) {  //some loc auths represented by more than one elmt
-      if (locAuth) $('[data-loc_auth = "' + locAuth  + '"]').css('fill',color);
-      else $path.css('fill',color);
-    }
-    $path.mouseover( function(evt) {
-      thisLA = $(this).attr('data-loc_auth');
-      pathFill('#fff', thisLA);
-      $mapHover.show().html(thisLA);
-    });
-    $path.mousemove( function(evt) {
-      $mapHover.css({left: (evt.pageX + 14 + 'px'), top: evt.pageY - 5 + 'px'});
-    });
-    $path.mousedown( function(evt) { downXY = [evt.clientX, evt.clientY] });  
-    $path.mouseout( function(evt) {
-      pathFill('#bbb', $(this).attr('data-loc_auth'));
-      $mapHover.hide().html('');
-    });
-    $path.mouseup( function(evt) {
-      if (evt.clientX === downXY[0] && evt.clientY === downXY[1]) {
-        pathFill('#bbb');
-        recordAnswer($(this).attr('data-loc_auth'));
-      }
-    });
-    
-    //questions
-    var targets = shuffle.array(config.place).slice(0,section.rep);
-    window.nextQ = function() {
-      if (targets.length > 0) { //not finished questions in this section
-		var tg = targets.shift();      
-		currentQ = {target: tg, action: []};  //set up log for new question
-		panZoomMap.fit();
-		panZoomMap.center();
-		currentQ.action = [];  //reset after fitting/centering map
-		$('#question-var').html(tg);           //show new question
-		startQ();  //ask new question (startQ will call nextQ ...)
-      }
-      else finishSection(); //finished section - clean up and move to next section
-    }
-    nextQ(); //ask first question
-    
-  });       
-});
+	//callback for mainMap section
+	oiiNexus.pretestMap = function() {
+	  $.get(oiiNexus.section.data, function(data) {
+	    
+	    $('#graph-container').html(data).append('<div id="map-hover"><div>').show();
+	    $('#question-text').html(oiiNexus.section.question);
+	    mask.off();
+	    
+	    //map pan and zoom
+	    function onPanZoom(z) {oiiNexus.currentQ.action.push(z);}
+	    var panZoomMap = svgPanZoom('#map',  //zoom options:
+		 { viewportSelector: '.svg-pan-zoom_viewport'
+		 , dblClickZoomEnabled: false
+		 , preventMouseEventsDefault: true
+		 , zoomScaleSensitivity: 0.3
+		 , minZoom: 0.9
+		 , maxZoom: 25
+		 , fit: true
+		 , contain: false
+		 , center: true
+		 , onZoom: onPanZoom
+		 , onPan: onPanZoom
+		 });
+
+	    //events
+	    var $path = $('path'),
+		   $mapHover = $('#map-hover'),
+		   downXY = [],   //pan fires click - use mousedown/up for click, need posn where mousedown
+		   thisLA;
+	    function pathFill(color,locAuth) {  //some loc auths represented by more than one elmt
+		 if (locAuth) $('[data-loc_auth = "' + locAuth  + '"]').css('fill',color);
+		 else $path.css('fill',color);
+	    }
+	    $path.mouseover( function(evt) {
+		 thisLA = $(this).attr('data-loc_auth');
+		 pathFill('#fff', thisLA);
+		 $mapHover.show().html(thisLA);
+	    });
+	    $path.mousemove( function(evt) {
+		 $mapHover.css({left: (evt.pageX + 14 + 'px'), top: evt.pageY - 5 + 'px'});
+	    });
+	    $path.mousedown( function(evt) { downXY = [evt.clientX, evt.clientY] });  
+	    $path.mouseout( function(evt) {
+		 pathFill('#bbb', $(this).attr('data-loc_auth'));
+		 $mapHover.hide().html('');
+	    });
+	    $path.mouseup( function(evt) {
+		 if (evt.clientX === downXY[0] && evt.clientY === downXY[1]) {
+		   pathFill('#bbb');
+		   oiiNexus.recordAnswer($(this).attr('data-loc_auth'));
+		 }
+	    });
+	    
+	    //questions
+	    var targets = oiiNexus.shuffle.array(oiiNexus.config.place).slice(0,oiiNexus.section.rep);
+	    oiiNexus.nextQ = function() {
+		 if (targets.length > 0) { //not finished questions in this section
+			var tg = targets.shift();      
+			oiiNexus.currentQ = {target: tg, action: []};  //set up log for new question
+			panZoomMap.fit();
+			panZoomMap.center();
+			oiiNexus.currentQ.action = [];  //reset after fitting/centering map
+			$('#question-var').html(tg);           //show new question
+			oiiNexus.startQ();  //ask new question (startQ will call nextQ ...)
+		 }
+		 else oiiNexus.finishSection(); //finished section - clean up and move to next section
+	    }
+	    oiiNexus.nextQ(); //ask first question
+	    
+	  });
+	};
+})();
