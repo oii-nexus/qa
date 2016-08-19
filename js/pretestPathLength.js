@@ -1,3 +1,5 @@
+"use strict";
+
 //callback for pretestDegree section
 $(function(){
 	//Load data callback
@@ -23,7 +25,7 @@ $(function(){
 		sigma.utils.logger(sig);
 
 		var targets = shuffle.array([0,1,2]),t;
-		nextQ = function() {
+		window.nextQ = function() {
 			if (targets.length > 0) { //more questions in this section
 				t = targets.shift();    //pop new target answer off front of tagets array
 
@@ -37,7 +39,7 @@ $(function(){
 				currentQ.action=[];
 				$('#question-var').html(section.question);
 				addButtons(['1','2','3','4','Other']);   //show answer buttons
-				startQ(nextQ);  //ask new question - startQ will call nextQ ...
+				startQ();  //ask new question - startQ will call nextQ ...
 			}
 		 		else  finishSection();
 		}

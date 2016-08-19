@@ -1,3 +1,5 @@
+"use strict";
+
 //callback for mainPathLength section
 $(function(){
 	$('#question-text').html("");
@@ -23,7 +25,7 @@ $(function(){
 
 	var targets = shuffle.array(section.targets); //.slice(0,section.rep);
 	var t;
-	nextQ = function() {
+	window.nextQ = function() {
 		if (targets.length > 0) { //more questions in this section
 			t = targets.shift();    //pop new target answer off front of tagets array
 			
@@ -45,7 +47,7 @@ $(function(){
 			
 			$('#question-var').html(section.question);
 			addButtons(['1','2','3','4','Other']);   //show answer buttons
-			startQ(nextQ);  //ask new question - startQ will call nextQ ...
+			startQ();  //ask new question - startQ will call nextQ ...
 		}
 	 		else  finishSection();
 	}

@@ -1,3 +1,5 @@
+"use strict";
+
 //callback for mainMap section
 $(function(){
 	$('#question-text').html(section.question);
@@ -35,7 +37,7 @@ $(function(){
 
 	var targets = shuffle.array(config.place).slice(0,section.rep);
 	var t;
-	nextQ = function() {
+	window.nextQ = function() {
 		if (targets.length > 0) { //more questions in this section
 			t = targets.shift();    //pop new target answer off front of tagets array
 			
@@ -45,7 +47,7 @@ $(function(){
 			currentQ.action=[]; //Reset to clear recenter/zoom actions
 			
 			$('#question-var').html(t);
-			startQ(nextQ);  //ask new question - startQ will call nextQ ...
+			startQ();  //ask new question - startQ will call nextQ ...
 		}
 	 	else  finishSection();
 	}

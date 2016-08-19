@@ -1,6 +1,7 @@
+"use strict";
+
 //log sigma actions to currentQ.action variable
-;(function(undefined) {
-  'use strict';
+(function(undefined) {
 
   if (typeof sigma === 'undefined')
     throw 'sigma is not declared';

@@ -1,3 +1,5 @@
+"use strict";
+
 //callback for map pretest
 
 //NOTES
@@ -61,7 +63,7 @@ $(function(){
     
     //questions
     var targets = shuffle.array(config.place).slice(0,section.rep);
-    nextQ = function() {
+    window.nextQ = function() {
       if (targets.length > 0) { //not finished questions in this section
 		var tg = targets.shift();      
 		currentQ = {target: tg, action: []};  //set up log for new question
@@ -69,7 +71,7 @@ $(function(){
 		panZoomMap.center();
 		currentQ.action = [];  //reset after fitting/centering map
 		$('#question-var').html(tg);           //show new question
-		startQ(nextQ);  //ask new question (startQ will call nextQ ...)
+		startQ();  //ask new question (startQ will call nextQ ...)
       }
       else finishSection(); //finished section - clean up and move to next section
     }

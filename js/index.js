@@ -1,42 +1,33 @@
+"use strict";
 // ----- NOTES -----
-//
-//CHANGES:
-//-switched to js/jQ - faff coordinating between L2 and JS
-//-load script and data for each section when required
-//
-//NOTES:
 //-sections in config file: name must be a script in js folder
 //-want width and height of graph area 100%? - I think was reduced to stop flickering scrollbars?
 //-haven't done anything for different screen sizes or mobile
 //-need zoom btns on map or networks - even laptop users may want them
 //-prevent text selection if gets annoying - eg if text selected when pan/zoom network
 //-fix mask to cover full page - currently if scroll down, mask does not stretch to btm
-//-should signal to user that starting new question when timer finishes - include small delay?
 //-slow panning and zooming in sigma since added tracking?
-//-currently no code to send results to server - shold do this after each section
 
+window.getQueryStringValue = function(key) {  
+	return unescape(window.location.search.replace(new RegExp("^(?:.*[&\\?]" + escape(key).replace(/[\.\+\*]/g, "\\$&") + "(?:\\=([^&]*))?)?.*$", "i"), "$1"));  
+}
+    
 $(function(){
   
-  $.get('config.json', function(cf) {
-  
-    
-    getQueryStringValue = function(key) {  
-	return unescape(window.location.search.replace(new RegExp("^(?:.*[&\\?]" + escape(key).replace(/[\.\+\*]/g, "\\$&") + "(?:\\=([^&]*))?)?.*$", "i"), "$1"));  
-    }
-    
+  $.get('config.json', function(cf) {    
 	// !!variables are globals on purpose!!
     
 	//data structures
-	config = cf;      //object corresponding to config.json
-	section = '';     //current entry from config.section
-	currentQ =  {};   //current question - pushed onto questions when done
-	questions = [];   //questions for current section - pushed onto track when section done
-	track =     {};   //log of all questions, actions and answers
-	USER_ID = getQueryStringValue("prolific_pid");
+	window.config = cf;      //object corresponding to config.json
+	window.section = '';     //current entry from config.section
+	window.currentQ =  {};   //current question - pushed onto questions when done
+	window.questions = [];   //questions for current section - pushed onto track when section done
+	window.track =     {};   //log of all questions, actions and answers
+	window.USER_ID = getQueryStringValue("prolific_pid");
 	
 	
-	TRAIN_DATA="{}"; //Data of the train network used in the main sections
-	CONDITION=""; //Experimental condition
+	window.TRAIN_DATA="{}"; //Data of the train network used in the main sections
+	window.CONDITION=""; //Experimental condition
 
 	//Randomize condition
 	var r=Math.random();
@@ -52,12 +43,10 @@ $(function(){
 	//Load main setection data
 	$.get(config.mainData, function(data) {
 		TRAIN_DATA=data;
-		console.log("Train data loaded");
-		console.log(TRAIN_DATA);
 	});
     
 	//useful functions
-	recordAnswer = function(ans) {
+	window.recordAnswer = function(ans) {
 		if (timeoutId) clearTimeout(timeoutId);
 		currentQ.answer = ans;
 		currentQ.endTime=Date.now();
@@ -75,7 +64,7 @@ $(function(){
 		}
 	};
     
-    addButtons = function(answers) {  //append buttons to answer-var elmt
+    window.addButtons = function(answers) {  //append buttons to answer-var elmt
       $('#question-var').append('<br><br>');
       for (var a=0; a<answers.length; a++) {
         $('#question-var').append('<div class="btn answer">' + answers[a] + '</div>');
@@ -84,8 +73,7 @@ $(function(){
         recordAnswer($(this).html());
       });
     };
-    mask = {
-      nextQ: function(){},
+    window.mask = {
       data: function() {   //show mask - loading data message
         $('#mask').html('Please wait, loading data.').show();
       },
@@ -96,14 +84,14 @@ $(function(){
       	$('#mask').append('<br/><br/><strong>Ready for the next question? Please click anywhere to continue.</strong>').show().click(function() {
 	        	$("#mask").off();//Remove the event handler
 	        	mask.off(); //Blank and hide the mask
-     	   	mask.nextQ();
+     	   	window.nextQ();
         	});
       },
       off: function() {    //hide mask
         $('#mask').html("").hide();
       }
     };
-    shuffle = {             
+    window.shuffle = {             
       index: function(s) {  //shuffle integers from 0 to s-1
       	var v = new Array(s);
       	var j;
@@ -119,14 +107,13 @@ $(function(){
       }
     };
     
-    updateTimer=function (timeStarted) {
+    window.updateTimer=function (timeStarted) {
         $("#elapsed").width((Date.now() - timeStarted)/config.maxTime*100 + '%');
     };
     var timerId,timeoutId;
     //functions for stepping through questions and sections
-    startQ = function(nextQ) {  //nextQ is func to get next question, it calls startQ ...
+    window.startQ = function() {  //use nextQ to get next question, it calls startQ ...
       mask.off();
-      mask.nextQ=nextQ;
       var elapsed = $('#elapsed');
       elapsed.width('0');
       timerId = setInterval(updateTimer, 250, Date.now());
@@ -136,7 +123,7 @@ $(function(){
       currentQ.startTime=Date.now();
     }
     
-    finishSection = function() {
+    window.finishSection = function() {
       $('#graph-container').html('');
       //track[section.name] = {section: section, questions: questions}; //log section results
       //Send data for section to server
@@ -144,7 +131,7 @@ $(function(){
       nextSection();
     };
     
-    nextSection = function() { //global
+    window.nextSection = function() { //global
       questions = [];
       $('#question, #mask').hide();     
       if (config.section.length === 0) {
@@ -167,7 +154,7 @@ $(function(){
     //nextSection();  //start first section 
 
 	//Function to send data to server for storage in database
-     dblogger = function(userid,section,payload) {
+     window.dblogger = function(userid,section,payload) {
      	var params={
      		"userid":userid,
      		"section":section,

@@ -1,3 +1,5 @@
+"use strict";
+
 //callback for mainDegree section
 $(function(){
 	$('#question-text').html(section.question);
@@ -22,7 +24,7 @@ $(function(){
 
 	var targets = shuffle.array(section.targets); //.slice(0,section.rep);
 	var t;
-	nextQ = function() {
+	window.nextQ = function() {
 		if (targets.length > 0) { //more questions in this section
 			t = targets.shift();    //pop new target answer off front of tagets array
 		
@@ -46,7 +48,7 @@ $(function(){
 			
 			$('#question-var').html(section.question2);             //show new question
 			addButtons(['Orange','Green','I don\'t know']);   //show answer buttons
-			startQ(nextQ);  //ask new question - startQ will call nextQ ...
+			startQ();  //ask new question - startQ will call nextQ ...
 		}
 	 		else  finishSection();
 	}
