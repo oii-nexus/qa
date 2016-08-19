@@ -25,13 +25,6 @@
       "data": "pretest_path_length.json"
     },
     {
-      "name": "mainIntro",
-      "instruc": "Thank you for completing our screening tests. We will now start the main portion of the survey. Within this section of the survey you will be paid a bonus of £0.10 for each correct answer. So, please focus and answer carefully. You have 60 seconds to answer each question.",
-      "rep": 0,
-      "question": "",
-      "data": "train.json"
-    },
-    {
       "name": "mainPathLength",
       "instruc": "This set of quesitons will ask you to determine the network distance between two nodes (circles). Remember that the \"distance\" is the number of edges (lines) between two nodes. A reminder of distance is shown in the figure below.<br/><img src='pretest/path_distance.svg'>",
       "rep": 3,
@@ -53,14 +46,15 @@
       "question": "Please click on the following city:"
     }
   ],
+  "mainData":"train.json",
   "place": ["Cardiff","Edinburgh","Glasgow","Newcastle","Manchester", "Liverpool",
             "Leeds","Sheffield","Birmingham","Leicester","Bristol","Southampton"],
   "pair": [
       ["Norwich","Ipswich"],
       ["Oxford","Cambridge"]
   ],
-  "minTime": 10000,
-  "maxTime": 60000,
+  "minTime": 1000,
+  "maxTime": 8000,
   "sigma": {
 		"settings":{
 			"defaultLabelColor": "#000",

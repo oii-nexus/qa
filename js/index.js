@@ -33,9 +33,30 @@ $(function(){
 	questions = [];   //questions for current section - pushed onto track when section done
 	track =     {};   //log of all questions, actions and answers
 	USER_ID = getQueryStringValue("prolific_pid");
+	
+	
+	TRAIN_DATA="{}"; //Data of the train network used in the main sections
+	CONDITION=""; //Experimental condition
+
+	//Randomize condition
+	var r=Math.random();
+	if (r<0.33) {
+		CONDITION="geo";
+	} else if (r < 0.66) {
+		CONDITION="pseudo-geo";
+	} else {
+		CONDITION="fr";
+	}
+	console.log(CONDITION);
+	
+	//Load main setection data
+	$.get(config.mainData, function(data) {
+		TRAIN_DATA=data;
+		console.log("Train data loaded");
+		console.log(TRAIN_DATA);
+	});
     
-	//useful functions 
-    
+	//useful functions
 	recordAnswer = function(ans) {
 		if (timeoutId) clearTimeout(timeoutId);
 		currentQ.answer = ans;
