@@ -8,7 +8,7 @@ console.log("loading mainMap...");
 	//callback for mainMap section
 	oiiNexus.mainMap = {
 		 "name": "mainMap",
-		 "instruc": "This set of quesitons will ask you to locate the node (circle) for a UK city within the network.",
+		 "instruc": "This set of quesitons will ask you to locate three UK cities on a network diagram. Each city is represented as a node (circle) within the network.",
 		 "rep": 3,
 		 "question": "Please click on the following city:",
 		 "execute":function(){
@@ -47,7 +47,7 @@ console.log("loading mainMap...");
 		});
 		sig.refresh();
 
-		var targets = oiiNexus.shuffle.array(oiiNexus.config.place).slice(0,this.rep);
+		var targets = shuffle.array(oiiNexus.config.place).slice(0,this.rep);
 		var t;
 		oiiNexus.nextQ = function() {
 			if (targets.length > 0) { //more questions in this section

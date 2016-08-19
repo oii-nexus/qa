@@ -6,7 +6,7 @@
 	//callback for pretestDegree section
 	oiiNexus.pretestDegree = {
       "name": "pretestDegree",
-      "instruc": "When looking at a network, \"degree\" refers to the extent to which a node (circle) is connected to other nodes. So, a node with many edges (lines) to other nodes is said to have high degree.",
+      "instruc": "In this section you will be shown network diagrams and asked about the \"degree\" of two nodes (circles). Degree refers to the extent to which a node (circle) is connected to other nodes. So, a node with more edges (lines) has a higher degree.",
       "rep": 3,
       "question": "Look at the green and orange nodes (circles) in the network:",
       "question2": "Which node has a higher degree (more connections)?",
@@ -36,7 +36,7 @@
 		});
 		sigma.utils.logger(sig);
 
-		var targets = oiiNexus.shuffle.array([0,1,2]),t;
+		var targets = shuffle.array([0,1,2]),t;
 		oiiNexus.nextQ = function() {
 			if (targets.length > 0) { //more questions in this section
 				t = targets.shift();    //pop new target answer off front of tagets array

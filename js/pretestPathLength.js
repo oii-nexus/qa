@@ -7,7 +7,7 @@
 	//callback for pretestPathLength section
 	oiiNexus.pretestPathLength = {
       "name": "pretestPathLength",
-      "instruc": "It is often useful to know the distance between two nodes (circles). For networks, this is usually reported as the number of edges (lines) between two nodes. So, two nodes directly connected are said to have a distance of 1. If is only possible to go from one node to another through a third node, then this is distance 2 (A->B->C). If it is only possible to go from one node to another through two additional nodes, this is distance 3 (A->B->C->D).",
+      "instruc": "This set of questions will also ask you to determine the network distance between two nodes (circles). Distance is measured as the number of edges (lines) between two nodes. So, two nodes directly connected are said to have a distance of 1. If is only possible to go from one node to another through a third node, then this is distance 2 (A->B->C). If it is only possible to go from one node to another through two additional nodes, this is distance 3 (A->B->C->D).<br/><img src='pretest/path_distance.svg'>",
       "rep": 1,
       "question": "What is the distance between the two orange nodes?",
       "data": "pretest_path_length.json",
@@ -36,7 +36,7 @@
 		});
 		sigma.utils.logger(sig);
 
-		var targets = oiiNexus.shuffle.array([0,1,2]),t;
+		var targets = shuffle.array([0,1,2]),t;
 		oiiNexus.nextQ = function() {
 			if (targets.length > 0) { //more questions in this section
 				t = targets.shift();    //pop new target answer off front of tagets array

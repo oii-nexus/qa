@@ -16,7 +16,7 @@
 	//callback for mainMap section
 	oiiNexus.pretestMap = {
 	 	"name": "pretestMap",
-	 	"instruc": "This set of questions is about UK geography.",
+	 	"instruc": "This section will ask you to locate three UK cities on a map of the country.",
 	 	"rep": 3,
 	 	"question": "Please click on the following city:",
 	 	"data": "map.txt",
@@ -76,7 +76,7 @@
 	    });
 	    
 	    //questions
-	    var targets = oiiNexus.shuffle.array(oiiNexus.config.place).slice(0,config.rep);
+	    var targets = shuffle.array(oiiNexus.config.place).slice(0,config.rep);
 	    oiiNexus.nextQ = function() {
 		 if (targets.length > 0) { //not finished questions in this section
 			var tg = targets.shift();      

@@ -7,7 +7,7 @@
 	//callback for mainDegree section
 	oiiNexus.mainDegree = {
 		 "name": "mainDegree",
-		 "instruc": "When looking at a network, \"degree\" refers to the extent to which a node (circle) is connected to other nodes. So, a node with many edges (lines) to other nodes is said to have high degree.",
+		 "instruc": "This section will again ask you to examine the degree of nodes (circles) for another network. Remember that \"degree\" refers to the extent to which a node (circle) is connected to other nodes. So, a node with more edges (lines) has a higher degree.",
 		 "rep": 3,
 		 "question": "Look at the green and orange nodes (circles) in the network:",
 		 "question2": "Which node has a higher degree (more connections)?",
@@ -34,7 +34,7 @@
 		});
 		sigma.utils.logger(sig);
 
-		var targets = oiiNexus.shuffle.array(this.targets); //.slice(0,this.rep);
+		var targets = shuffle.array(this.targets); //.slice(0,this.rep);
 		var t;
 		var config=this;
 		oiiNexus.nextQ = function() {

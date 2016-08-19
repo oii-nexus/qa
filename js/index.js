@@ -13,10 +13,30 @@
 		return unescape(window.location.search.replace(new RegExp("^(?:.*[&\\?]" + escape(key).replace(/[\.\+\*]/g, "\\$&") + "(?:\\=([^&]*))?)?.*$", "i"), "$1"));  
 	}
 	
+	window.shuffle = {             
+      index: function(s) {  //shuffle integers from 0 to s-1
+      	var v = new Array(s);
+      	var j;
+      	v[0] = 0;
+      	for (var i=1; i<s; i++) {
+      		j = Math.floor(Math.random()*(i + 1));
+      		v[i] = v[j];
+      		v[j] = i; }
+      	return v;
+      },
+      array: function(v) {  //shuffle array
+        return this.index(v.length).map(function(x) {return v[x]}); 
+      }
+    };
+	
 	// oiiNexus is a global variable
 	window.oiiNexus={
 		config:{
-		  "section":["pretestMap","mainMap","pretestDegree","mainDegree","pretestPathLength","mainPathLength"],
+		  "section":shuffle.array([
+		  	["pretestMap","mainMap"],
+		  	["pretestDegree","mainDegree"],
+		  	["pretestPathLength","mainPathLength"]
+		  ]),
 		  "mainData":"train.json",
 		  "place": ["Cardiff","Edinburgh","Glasgow","Newcastle","Manchester", "Liverpool",
 				  "Leeds","Sheffield","Birmingham","Leicester","Bristol","Southampton"],
@@ -104,22 +124,6 @@
         oiiNexus.recordAnswer($(this).html());
       });
     };
-
-    oiiNexus.shuffle = {             
-      index: function(s) {  //shuffle integers from 0 to s-1
-      	var v = new Array(s);
-      	var j;
-      	v[0] = 0;
-      	for (var i=1; i<s; i++) {
-      		j = Math.floor(Math.random()*(i + 1));
-      		v[i] = v[j];
-      		v[j] = i; }
-      	return v;
-      },
-      array: function(v) {  //shuffle array
-        return this.index(v.length).map(function(x) {return v[x]}); 
-      }
-    };
     
     oiiNexus.updateTimer=function (timeStarted) {
         $("#elapsed").width((Date.now() - timeStarted)/oiiNexus.config.maxTime*100 + '%');
@@ -149,14 +153,15 @@
     
     oiiNexus.nextSection = function() { //can use oiiNexus. or this.
       oiiNexus.questions = [];
-      $('#question, #mask').hide();     
+      $('#question, #mask').hide();
       if (oiiNexus.config.section.length === 0) {
-        //$('#instruc-text').html('Finished, thank you, show code.');
-        //$('#start').hide();
         window.location.href = "postq.php?prolific_pid="+oiiNexus.USER_ID;
       }
       else {
-        oiiNexus.section = oiiNexus.config.section.shift();  //global
+        oiiNexus.section = oiiNexus.config.section[0].shift();
+        if (oiiNexus.config.section[0].length===0) {
+        	oiiNexus.config.section.shift(); //Remove empty list
+        }
         $('#instruc-text').html(oiiNexus[oiiNexus.section].instruc);
       }
       $('#instruc').show();
