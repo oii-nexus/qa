@@ -8,7 +8,7 @@ console.log("loading mainMap...");
 	//callback for mainMap section
 	oiiNexus.mainMap = {
 		 "name": "mainMap",
-		 "instruc": "This set of quesitons will ask you to locate three UK cities on a network diagram. Each city is represented as a node (circle) within the network.",
+		 "instruc": "This set of questions will ask you to locate three UK cities on a network diagram. Each city is represented as a node (circle) within the network.",
 		 "rep": 3,
 		 "question": "Please click on the following city:",
 		 "execute":function(){

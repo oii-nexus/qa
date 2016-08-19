@@ -7,7 +7,7 @@
 	//callback for mainPathLength section
 	oiiNexus.mainPathLength = {
       "name": "mainPathLength",
-      "instruc": "This set of questions will also ask you to determine the network distance between two nodes (circles). Remember that the \"distance\" is the number of edges (lines) between two nodes. A reminder of distance is shown in the figure below.<br/><img src='pretest/path_distance.svg'>",
+      "instruc": "This set of questions will again ask you to determine the network distance between two nodes (circles). Remember that the \"distance\" is the number of edges (lines) between two nodes. A reminder of distance is shown in the figure below.<br/><img src='pretest/path_distance.svg'>",
       "rep": 3,
       "targets":[["Manchester","London"],["Birmingham","Leeds"],["York","Leicester"]],
       "question": "What is the distance between the two orange nodes?",

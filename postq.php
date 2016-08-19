@@ -5,8 +5,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	$section="postq";
 	$payload=json_encode($_POST);
 	dblogger($userid,$section,$payload);
-	//TODO Log to file if error?
-	header("Location: $completitionURL");//TODO: UPDATE
+	header("Location: $completitionURL");
 	exit;
 }
 ?>
@@ -26,6 +25,19 @@ dt {
 	margin-top: 30px;
 	margin-bottom: 10px;
 }
+
+a.reset {
+	display: none;
+}
+
+a.selected, :checked+span {
+	font-weight: bold;
+	color: #009900;
+}
+
+input:valid[type=text], input:valid[type=number] {
+	outline: #009900 solid thin;
+}
 </style>
 
 <script src="js/jquery-2.2.2.min.js"></script>
@@ -39,6 +51,31 @@ $(function(){
 		$(this).children(".vas-dot").show().css({"margin-left":val});
 		
 	});
+	
+	$(".autofill").click(function() {
+		var element=$(this);
+		var parent=element.parent();
+		parent.children("input[type!=hidden]").prop("required",false).prop("disabled",true).val("");
+		var hinput=parent.children("input[type=hidden]");
+		console.log(hinput);
+		if (hinput.length===0) {
+			hinput=$('<input type="hidden"></input>').attr("name",element.data("target")).appendTo(parent);
+		}
+		hinput.val(element.data("value"));
+		element.siblings(".autofill").removeClass("selected")
+		parent.children(".reset").show();
+		element.addClass("selected");
+	});
+	
+	$(".reset").click(function() {
+		var element=$(this);
+		var parent=element.parent();
+		parent.children("input[type=hidden]").remove();
+		parent.children(".autofill").removeClass("selected");
+		parent.children(".reset").hide();
+		parent.children("input").prop("required",true).prop("disabled",false);	
+	});
+	
 });
 </script>
 
@@ -46,35 +83,43 @@ $(function(){
 </head>
 <body>
 <p>Thank you for completing our experiment.</p>
-<p>We are really grateful for your time. If you could answer a few more questions about your background it would greatly help this academic study. Your answers to these questions will not affect your payment.</p>
+<p>We are really grateful for your time. If you could answer a few more questions about your background it would greatly help this academic study.</p>
 <form action="postq.php" method="post">
 <input type="hidden" name="userid" value="<?=$_GET["prolific_pid"]?>">
 <dl>
 	<dt>Gender</dt>
 	<dd>
-		<label><input type="radio" name="gender" value="male" required>Male</label><br/>
-		<label><input type="radio" name="gender" value="female" required>Female</label><br/>
-		<label><input type="radio" name="gender" value="other" required>Other</label><br/>
-		<label><input type="radio" name="gender" value="pnts" required>Prefer not to say</label><br/>
+		<label><input type="radio" name="gender" value="male" required><span>Male</span></label><br/>
+		<label><input type="radio" name="gender" value="female" required><span>Female</span></label><br/>
+		<label><input type="radio" name="gender" value="other" required><span>Other</span></label><br/>
+		<label><input type="radio" name="gender" value="pnts" required><span>Prefer not to say</span></label>
 	</dd>
 	
 	<dt>Age</dt>
 	<dd>
-		<label><input type="radio" name="age" value="0-18" required>0-18</label><br/>
-		<label><input type="radio" name="age" value="19-25" required>19-25</label><br/>
-		<label><input type="radio" name="age" value="26-35" required>26-35</label><br/>
-		<label><input type="radio" name="age" value="36-45" required>36-45</label><br/>
-		<label><input type="radio" name="age" value="45-55" required>46-55</label><br/>
-		<label><input type="radio" name="age" value="56" required>56+</label><br/>
-		<label><input type="radio" name="age" value="pnts" required>Prefer not to say</label><br/>
+		<label><input type="radio" name="age" value="0-18" required><span>0-18</span></label><br/>
+		<label><input type="radio" name="age" value="19-25" required><span>19-25</span></label><br/>
+		<label><input type="radio" name="age" value="26-35" required><span>26-35</span></label><br/>
+		<label><input type="radio" name="age" value="36-45" required><span>36-45</span></label><br/>
+		<label><input type="radio" name="age" value="45-55" required><span>46-55</span></label><br/>
+		<label><input type="radio" name="age" value="56+" required><span>56+</span></label><br/>
+		<label><input type="radio" name="age" value="pnts" required><span>Prefer not to say</span></label>
+	</dd>
+	
+	<dt>Where do you live in the UK?</dt>
+	<dd>
+		Please enter the first three letters/numbers of your postcode (e.g., OX1).<br/>
+		<input name="location" size="3" type="text" required><a href="javascript:void(0)" class="reset" data-target="location">(reset)</a><br/>
+		<a href="javascript:void(0)" class="autofill" data-target="location" data-value="notuk">I do not live in the UK.</a><br/>
+		<a href="javascript:void(0)" class="autofill" data-taret="location" data-value="pnts">I prefer not to say.</a>
 	</dd>
 
 	<dt>How many years have you lived in the UK?
 	<dd>
-		Please enter 0 (zero) if you do not currently live in the UK.<br/>
-		<input name="uk" size="3" type="number" min="0" step="any" required> years<br/>
-		
-		<!--<input type="checkbox" name="uk1">If you do not live in the UK...-->
+		<input name="uk" size="3" type="number" min="0" step="any" required> years
+			<span class="label">&nbsp;</span> <a href="javascript:void(0)" class="reset" data-target="location">(reset)</a><br/>
+		<a href="javascript:void(0)" class="autofill" data-target="uk" data-value="notuk">I do not live in the UK</a><br/>
+		<a href="javascript:void(0)" class="autofill" data-taret="uk" data-value="pnts">I prefer not to say</a>
 	</dd>
 	
 	<dt>How familiar you feel you are with UK geography?</dt>
@@ -92,9 +137,9 @@ $(function(){
 	
 	<dt>Have you previously seen network visualizations?</dt>
 	<dd>
-		<label><input type="radio" name="netvis" value="yes" required>Yes</label><br/>
-		<label><input type="radio" name="netvis" value="no" required>No</label><br/>
-		<label><input type="radio" name="netvis" value="unsure" required>Unsure</label><br/>
+		<label><input type="radio" name="netvis" value="yes" required><span>Yes</span></label><br/>
+		<label><input type="radio" name="netvis" value="no" required><span>No</span></label><br/>
+		<label><input type="radio" name="netvis" value="unsure" required><span>Unsure</span></label>
 	</dd>
 
 	<dt>How good do you feel you are at reading network visualizations?</dt>
@@ -130,7 +175,7 @@ $(function(){
 	</dd>
 </dl>
 
-<p>Thank you. After clicking "Finish" you will automatically be taken back to Prolific.ac</p>
+<p>Thank you. After clicking "Finish" you will automatically be taken back to Prolific.ac. Your bonus will be paid within one week.</p>
 <input type="submit" value="Finish" />
 </form>
 </body>
