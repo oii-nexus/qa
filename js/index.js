@@ -178,9 +178,13 @@ $(function(){
     		if (uid!=USER_ID) {
     			USER_ID=uid;
     		}
-	     $('#intro').hide();
-    		nextSection();
-    	});
+    		var btn=$("<div></div>").attr("class","btn").text("Start").click(function() {
+			$('#intro').hide();
+	    		nextSection();
+    		});
+    		$('#intro').html("<p>Welcome!</p>Thank you for agreeing to take part. For this study you will be shown a variety of visualizations and asked some questions about them.</p><p>Please try to answer as best you can, but do not worry if you cannot answer every question. For each correct answer, you will be paid a <strong>bonus of £X.XX</strong>.</p><p>For each question, you can <strong>use your mouse to pan and zoom</strong>. Click and drag to move the visualization, and use the scroll wheel on your mouse to zoom.</p><p>Finally, for each question you will have a maximum of " + (config.maxTime/1000) + " seconds in order to ensure you finish the study in a reasonable amount of time. In order to prevent undue rushing, each question requires you to take at least " + (config.minTime/1000) + " seconds.</p><p>Please click the start button below to begin.</p>" ).append(btn);
+    		});
+    	
       
   });
 })
