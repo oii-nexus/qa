@@ -5,7 +5,13 @@
 		throw 'oiiNexus is not declared';
 
 	//callback for mainPathLength section
-	oiiNexus.mainPathLength = function() {
+	oiiNexus.mainPathLength = {
+      "name": "mainPathLength",
+      "instruc": "This set of quesitons will ask you to determine the network distance between two nodes (circles). Remember that the \"distance\" is the number of edges (lines) between two nodes. A reminder of distance is shown in the figure below.<br/><img src='pretest/path_distance.svg'>",
+      "rep": 3,
+      "targets":[["Manchester","London"],["Birmingham","Leeds"],["York","Leicester"]],
+      "question": "What is the distance between the two orange nodes?",
+      "execute":function() {
 		$('#question-text').html("");
 		mask.off();
 
@@ -26,8 +32,9 @@
 		});
 		sigma.utils.logger(sig);
 
-		var targets = oiiNexus.shuffle.array(oiiNexus.section.targets); //.slice(0,section.rep);
+		var targets = oiiNexus.shuffle.array(this.targets); //.slice(0,this.rep);
 		var t;
+		var config=this;
 		oiiNexus.nextQ = function() {
 			if (targets.length > 0) { //more questions in this section
 				t = targets.shift();    //pop new target answer off front of tagets array
@@ -48,12 +55,13 @@
 				sig.cameras[0].goTo({"x":0,"y":0,"angle":0,"ratio":1}); //recenter and zoom
 				oiiNexus.currentQ.action=[]; //Reset to clear recenter/zoom actions
 			
-				$('#question-var').html(oiiNexus.section.question);
+				$('#question-var').html(config.question);
 				oiiNexus.addButtons(['1','2','3','4','Other']);   //show answer buttons
 				oiiNexus.startQ();  //ask new question - startQ will call nextQ ...
 			}
 		 		else  oiiNexus.finishSection();
 		}
 		oiiNexus.nextQ(); //ask first question
-	};
+	}
+  };
 })();

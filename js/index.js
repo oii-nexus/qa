@@ -14,13 +14,24 @@
 	}
 	
 	// oiiNexus is a global variable
-	window.oiiNexus={};
+	window.oiiNexus={
+		config:{
+		  "section":["pretestMap","mainMap","pretestDegree","mainDegree","pretestPathLength","mainPathLength"],
+		  "mainData":"train.json",
+		  "place": ["Cardiff","Edinburgh","Glasgow","Newcastle","Manchester", "Liverpool",
+				  "Leeds","Sheffield","Birmingham","Leicester","Bristol","Southampton"],
+		  "pair": [
+			 ["Norwich","Ipswich"],
+			 ["Oxford","Cambridge"]
+		  ],
+		  "minTime": 1000,
+		  "maxTime": 8000
+		}
 	
-	$.get('config.json', function(cf) {
-		oiiNexus.config=cf;
-		$.get(cf.mainData, function(data) {	//Load main section data
+	};
+	
+	$.get(oiiNexus.config.mainData, function(data) {	//Load main section data
 			oiiNexus.TRAIN_DATA=data;
-		});
 	});
 	
 	
@@ -47,7 +58,7 @@
     
     
 	//data structures
-	oiiNexus.section = '';     //current entry from config.section
+	oiiNexus.section = '';     //settings for current section
 	oiiNexus.currentQ =  {};   //current question - pushed onto questions when done
 	oiiNexus.questions = [];   //questions for current section - pushed onto track when section done
 	oiiNexus.track =     {};   //log of all questions, actions and answers
@@ -132,7 +143,7 @@
       $('#graph-container').html('');
       //track[section.name] = {section: section, questions: questions}; //log section results
       //Send data for section to server
-      oiiNexus.dblogger(oiiNexus.USER_ID,oiiNexus.section.name,oiiNexus.questions);
+      oiiNexus.dblogger(oiiNexus.USER_ID,oiiNexus.section,oiiNexus.questions);
       oiiNexus.nextSection();
     };
     
@@ -146,7 +157,7 @@
       }
       else {
         oiiNexus.section = oiiNexus.config.section.shift();  //global
-        $('#instruc-text').html(oiiNexus.section.instruc);
+        $('#instruc-text').html(oiiNexus[oiiNexus.section].instruc);
       }
       $('#instruc').show();
     };
@@ -181,8 +192,8 @@ $(function(){
       $('#instruc').hide();
       $('#question').show();
       //$.getScript('js/' + oiiNexus.section.name + '.js');
-      console.log(oiiNexus.section.name);
-      oiiNexus[oiiNexus.section.name]();
+      console.log(oiiNexus.section);
+      oiiNexus[oiiNexus.section].execute();
     });
     
     //Get userid

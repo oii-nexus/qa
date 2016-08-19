@@ -6,8 +6,15 @@ console.log("loading mainMap...");
 		throw 'oiiNexus is not declared';
 
 	//callback for mainMap section
-	oiiNexus.mainMap = function() {
-		$('#question-text').html(oiiNexus.section.question);
+	oiiNexus.mainMap = {
+		 "name": "mainMap",
+		 "instruc": "This set of quesitons will ask you to locate the node (circle) for a UK city within the network.",
+		 "rep": 3,
+		 "question": "Please click on the following city:",
+		 "execute":function(){
+	
+	
+		$('#question-text').html(this.question);
 		mask.off();
 
 		var sig = new sigma({
@@ -40,7 +47,7 @@ console.log("loading mainMap...");
 		});
 		sig.refresh();
 
-		var targets = oiiNexus.shuffle.array(oiiNexus.config.place).slice(0,oiiNexus.section.rep);
+		var targets = oiiNexus.shuffle.array(oiiNexus.config.place).slice(0,this.rep);
 		var t;
 		oiiNexus.nextQ = function() {
 			if (targets.length > 0) { //more questions in this section
@@ -57,5 +64,6 @@ console.log("loading mainMap...");
 		 	else  oiiNexus.finishSection();
 		}
 		oiiNexus.nextQ(); //ask first question
-	};
+	}
+  };
 })();

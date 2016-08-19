@@ -5,9 +5,17 @@
 		throw 'oiiNexus is not declared';
 
 	//callback for pretestPathLength section
-	oiiNexus.pretestPathLength = function() {
+	oiiNexus.pretestPathLength = {
+      "name": "pretestPathLength",
+      "instruc": "It is often useful to know the distance between two nodes (circles). For networks, this is usually reported as the number of edges (lines) between two nodes. So, two nodes directly connected are said to have a distance of 1. If is only possible to go from one node to another through a third node, then this is distance 2 (A->B->C). If it is only possible to go from one node to another through two additional nodes, this is distance 3 (A->B->C->D).",
+      "rep": 1,
+      "question": "What is the distance between the two orange nodes?",
+      "data": "pretest_path_length.json",
+      "execute":function() {
+	      var config=this;
+	
 	//Load data callback
-	$.get(oiiNexus.section.data, function(data) {
+	$.get(this.data, function(data) {
 		$('#question-text').html("");
 		mask.off();
 
@@ -41,7 +49,7 @@
 				oiiNexus.currentQ = {target: data[t]["name"], action: []};
 				sig.cameras[0].goTo({"x":0,"y":0,"angle":0,"ratio":1}); //recenter and zoom
 				oiiNexus.currentQ.action=[];
-				$('#question-var').html(oiiNexus.section.question);
+				$('#question-var').html(config.question);
 				oiiNexus.addButtons(['1','2','3','4','Other']);   //show answer buttons
 				oiiNexus.startQ();  //ask new question - startQ will call nextQ ...
 			}
@@ -49,5 +57,6 @@
 		}
 		oiiNexus.nextQ(); //ask first question
 		});
-	};
+	}
+  };
 })();

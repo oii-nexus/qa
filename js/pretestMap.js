@@ -14,11 +14,20 @@
 		throw 'oiiNexus is not declared';
 
 	//callback for mainMap section
-	oiiNexus.pretestMap = function() {
-	  $.get(oiiNexus.section.data, function(data) {
+	oiiNexus.pretestMap = {
+	 	"name": "pretestMap",
+	 	"instruc": "This set of questions is about UK geography.",
+	 	"rep": 3,
+	 	"question": "Please click on the following city:",
+	 	"data": "map.txt",
+	 	"execute":function(config) {	
+	 	
+	 	var config=this; //Would normally use this throughout, but context obviously changes within data handler function
+	
+	  $.get(this.data, function(data) {
 	    
 	    $('#graph-container').html(data).append('<div id="map-hover"><div>').show();
-	    $('#question-text').html(oiiNexus.section.question);
+	    $('#question-text').html(config.question);
 	    mask.off();
 	    
 	    //map pan and zoom
@@ -67,7 +76,7 @@
 	    });
 	    
 	    //questions
-	    var targets = oiiNexus.shuffle.array(oiiNexus.config.place).slice(0,oiiNexus.section.rep);
+	    var targets = oiiNexus.shuffle.array(oiiNexus.config.place).slice(0,config.rep);
 	    oiiNexus.nextQ = function() {
 		 if (targets.length > 0) { //not finished questions in this section
 			var tg = targets.shift();      
@@ -83,5 +92,6 @@
 	    oiiNexus.nextQ(); //ask first question
 	    
 	  });
-	};
+	}//end execute function
+};//end section
 })();

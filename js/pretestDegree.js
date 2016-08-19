@@ -4,11 +4,19 @@
 	if (typeof oiiNexus === 'undefined')
 		throw 'oiiNexus is not declared';
 	//callback for pretestDegree section
-	oiiNexus.pretestDegree = function() {
+	oiiNexus.pretestDegree = {
+      "name": "pretestDegree",
+      "instruc": "When looking at a network, \"degree\" refers to the extent to which a node (circle) is connected to other nodes. So, a node with many edges (lines) to other nodes is said to have high degree.",
+      "rep": 3,
+      "question": "Look at the green and orange nodes (circles) in the network:",
+      "question2": "Which node has a higher degree (more connections)?",
+      "data": "pretest_degree.json",
+      "execute":function() {
+      	var config=this;
 	
 	//Load data callback
-	$.get(oiiNexus.section.data, function(data) {
-		$('#question-text').html(oiiNexus.section.question);
+	$.get(this.data, function(data) {
+		$('#question-text').html(config.question);
 		mask.off();
 
 		var sig = new sigma({
@@ -41,7 +49,7 @@
 				oiiNexus.currentQ = {target: data[t]["name"], action: []};
 				sig.cameras[0].goTo({"x":0,"y":0,"angle":0,"ratio":1}); //recenter and zoom
 				oiiNexus.currentQ.action=[]; //Reset to get clear the actions of the recenter/zoom
-				$('#question-var').html(oiiNexus.section.question2);             //show new question
+				$('#question-var').html(config.question2);             //show new question
 				oiiNexus.addButtons(['Orange','Green','I don\'t know']);   //show answer buttons
 				oiiNexus.startQ();  //ask new question - startQ will call nextQ ...
 			}
@@ -49,5 +57,6 @@
 		}
 		oiiNexus.nextQ(); //ask first question
 		});
-	};
+	}
+  };
 })();
