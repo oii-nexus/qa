@@ -57,7 +57,7 @@
 	    }
 	    $path.mouseover( function(evt) {
 		 thisLA = $(this).attr('data-loc_auth');
-		 pathFill('#fff', thisLA);
+		 pathFill('#996600', thisLA);
 		 $mapHover.show().html(thisLA);
 	    });
 	    $path.mousemove( function(evt) {
