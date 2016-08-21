@@ -38,14 +38,10 @@
 		  	["pretestPathLength","mainPathLength"]
 		  ]),
 		  "mainData":"train.json",
-		  "place": ["Cardiff","Edinburgh","Glasgow","Newcastle","Manchester", "Liverpool",
-				  "Leeds","Sheffield","Birmingham","Leicester","Bristol","Southampton"],
-		  "pair": [
-			 ["Norwich","Ipswich"],
-			 ["Oxford","Cambridge"]
-		  ],
-		  "minTime": 1000,
-		  "maxTime": 8000
+		  "place": ["Cardiff", "Edinburgh", "Glasgow", "Leicester", "Leeds", "Nottingham",
+		  	"Birmingham","Bristol","Manchester"],//"Sheffield","Liverpool","Newcastle upon Tyne"],
+		  "minTime": 10000,
+		  "maxTime": 30000
 		}
 	
 	};

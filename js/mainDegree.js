@@ -11,7 +11,8 @@
 		 "rep": 3,
 		 "question": "Look at the green and orange nodes (circles) in the network:",
 		 "question2": "Which node has a higher degree (more connections)?",
-		 "targets":[["Manchester","London"],["Birmingham","Leeds"],["York","Leicester"]],
+		 "targets":[["Manchester","London"],["Birmingham","Leeds"],["London","Glasgow City"],
+		 	["Cardiff","Leicester"],["City of Edinburgh","Glasgow City"]],
 		 "execute": function(){
 	
 		$('#question-text').html(this.question);
@@ -34,7 +35,7 @@
 		});
 		sigma.utils.logger(sig);
 
-		var targets = shuffle.array(this.targets); //.slice(0,this.rep);
+		var targets = shuffle.array(this.targets).slice(0,this.rep);
 		var t;
 		var config=this;
 		oiiNexus.nextQ = function() {
