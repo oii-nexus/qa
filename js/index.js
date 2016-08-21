@@ -1,12 +1,8 @@
 "use strict";
 // ----- NOTES -----
-//-sections in config file: name must be a script in js folder
-//-want width and height of graph area 100%? - I think was reduced to stop flickering scrollbars?
-//-haven't done anything for different screen sizes or mobile
-//-need zoom btns on map or networks - even laptop users may want them
-//-prevent text selection if gets annoying - eg if text selected when pan/zoom network
-//-fix mask to cover full page - currently if scroll down, mask does not stretch to btm
-//-slow panning and zooming in sigma since added tracking?
+//-need zoom btns on map or networks? - even laptop users may want them
+//-page should not scroll. Need to set CSS attributes?
+//-try to resend data if there is a connection error
 
 ;(function(){
 	var getQueryStringValue = function(key) {  
@@ -170,18 +166,13 @@
      		"section":section,
      		"payload":JSON.stringify(payload)
      	};
-     	console.log("Sending data");
-     	console.log(params);
-     	//jQuery.getJSON("db/log.php", params, function(resp) {
-     	//	console.log(resp);
-     	//});
+     	//console.log("Sending data");
+     	//console.log(params);
      	$.ajax({
                 url : 'db/log.php',
                 type: 'POST',
-                data: params,
-                success: function(resp) {
-                	console.log(resp);
-                }
+                data: params
+                //TODO: On error try to resend.
           });
      };
 
@@ -193,7 +184,7 @@ $(function(){
       $('#instruc').hide();
       $('#question').show();
       //$.getScript('js/' + oiiNexus.section.name + '.js');
-      console.log(oiiNexus.section);
+      //console.log(oiiNexus.section);
       oiiNexus[oiiNexus.section].execute();
     });
     
@@ -212,7 +203,7 @@ $(function(){
 			$('#intro').hide();
 	    		oiiNexus.nextSection();
     		});
-    		$('#intro').html("<p>Welcome!</p>Thank you for agreeing to take part. For this study you will be shown a variety of visualizations and asked some questions about them.</p><p>Please try to answer as best you can, but do not worry if you cannot answer every question. For each correct answer, you will be paid a <strong>bonus of £X.XX</strong>.</p><p>For each question, you can <strong>use your mouse to pan and zoom</strong>. Click and drag to move the visualization, and use the scroll wheel on your mouse to zoom.</p><p>Finally, for each question you will have a maximum of " + (oiiNexus.config.maxTime/1000) + " seconds in order to ensure you finish the study in a reasonable amount of time. In order to prevent undue rushing, each question requires you to take at least " + (oiiNexus.config.minTime/1000) + " seconds.</p><p>Please click the start button below to begin.</p>" ).append(btn);
+    		$('#intro').html("<p>Welcome!</p>Thank you for agreeing to take part. For this study you will be shown a variety of visualizations and asked some questions about them.</p><p>Please try to answer as best you can, but do not worry if you cannot answer every question. For each correct answer, you will be paid a <strong>bonus of £0.075</strong>.</p><p>For each question, you can <strong>use your mouse to pan and zoom</strong>. Click and drag to move the visualization, and use the scroll wheel on your mouse to zoom.</p><p>Finally, for each question you will have a maximum of " + (oiiNexus.config.maxTime/1000) + " seconds in order to ensure you finish the study in a reasonable amount of time. In order to prevent undue rushing, each question requires you to take at least " + (oiiNexus.config.minTime/1000) + " seconds.</p><p>Please click the start button below to begin.</p>" ).append(btn);
     		});  
 });
 
