@@ -7,7 +7,9 @@
 	//callback for mainDegree section
 	oiiNexus.mainDegree = {
 		 "name": "mainDegree",
-		 "instruc": "This section will again ask you to examine the degree of nodes (circles) for another network. Remember that \"degree\" refers to the extent to which a node (circle) is connected to other nodes. So, a node with more edges (lines) has a higher degree.",
+		 "instruc": "This section will again ask you to examine the degree of nodes (circles).",
+		 "instruc2": '<h1>Degree</h1><div class="col1"><p>Degree refers to the number of edges (lines) connected to each node (circle). <strong>A node with more edges (lines) has a higher degree.</strong> As an example, we can say that node A (degree 3) has a higher degree than node B (degree 2). Nodes A and E have the same degree (3).</p></div><div class="col2"><img src="images/network_degree.svg"></div>',
+
 		 "rep": 3,
 		 "question": "Look at the green and orange nodes (circles) in the network:",
 		 "question2": "Which node has a higher degree (more connections)?",

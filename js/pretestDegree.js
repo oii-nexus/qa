@@ -6,7 +6,8 @@
 	//callback for pretestDegree section
 	oiiNexus.pretestDegree = {
       "name": "pretestDegree",
-      "instruc": "In this section you will be shown network diagrams and asked about the \"degree\" of two nodes (circles). Degree refers to the extent to which a node (circle) is connected to other nodes. So, a node with more edges (lines) has a higher degree.",
+      "instruc": "In this section you will be shown network diagrams and asked to compare the \"degree\" of two nodes (circles).",
+      "instruc2": '<h1>Degree</h1><div class="col1"><p>Degree refers to the number of edges (lines) connected to each node (circle). <strong>A node with more edges (lines) has a higher degree.</strong> As an example, we can say that node A (degree 3) has a higher degree than node B (degree 2). Nodes A and E have the same degree (3).</p></div><div class="col2"><img src="images/network_degree.svg"></div>',
       "rep": 3,
       "question": "Look at the green and orange nodes (circles) in the network:",
       "question2": "Which node has a higher degree (more connections)?",

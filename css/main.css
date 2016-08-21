@@ -88,8 +88,34 @@ path:hover {
   font-size: 24px;
 }
 
+#intro2 {
+	position: absolute;
+	left: 350px;
+	top: 50px;
+	display: none;
+	max-width: 1500px;
+}
 
+#intro2 h1 {
+	font-size: 24px;
+	clear: both;
+	margin-top: 50px;
+	margin-bottom: 10px;
+}
 
+#intro2 div {
+	float: left;
+}
+
+#intro2 div.col2 {
+	max-width: 900px;
+	margin-right: 15px;
+}
+
+#intro2 div.col1 {
+	width: 30%;
+	margin-right: 15px;
+}
 
 
 

@@ -155,6 +155,9 @@
         	oiiNexus.config.section.shift(); //Remove empty list
         }
         $('#instruc-text').html(oiiNexus[oiiNexus.section].instruc);
+        if (oiiNexus[oiiNexus.section].instruc2!==undefined) {
+	        $('#intro2').html(oiiNexus[oiiNexus.section].instruc2).show();
+	   }
       }
       $('#instruc').show();
     };
@@ -182,6 +185,7 @@ $(function(){
    $('#start').click( function() {
       mask.data();
       $('#instruc').hide();
+      $('#intro2').hide();
       $('#question').show();
       //$.getScript('js/' + oiiNexus.section.name + '.js');
       //console.log(oiiNexus.section);
@@ -201,10 +205,14 @@ $(function(){
     		}
     		var btn=$("<div></div>").attr("class","btn").text("Start").click(function() {
 			$('#intro').hide();
+			$("#intro2").hide();
 	    		oiiNexus.nextSection();
     		});
-    		$('#intro').html("<p>Welcome!</p>Thank you for agreeing to take part. For this study you will be shown a variety of visualizations and asked some questions about them.</p><p>Please try to answer as best you can, but do not worry if you cannot answer every question. For each correct answer, you will be paid a <strong>bonus of £0.075</strong>.</p><p>For each question, you can <strong>use your mouse to pan and zoom</strong>. Click and drag to move the visualization, and use the scroll wheel on your mouse to zoom.</p><p>Finally, for each question you will have a maximum of " + (oiiNexus.config.maxTime/1000) + " seconds in order to ensure you finish the study in a reasonable amount of time. In order to prevent undue rushing, each question requires you to take at least " + (oiiNexus.config.minTime/1000) + " seconds.</p><p>Please click the start button below to begin.</p>" ).append(btn);
-    		});  
+    		$('#intro').html("<p><strong>Welcome!</strong></p>Thank you for agreeing to take part. For this study you will be shown a variety of visualizations and asked some questions about them.</p><p>Please read the instructions to the right and then click the start button below to begin.</p>").append(btn);
+		$("#minTime").text(oiiNexus.config.minTime/1000);
+		$("#maxTime").text(oiiNexus.config.maxTime/1000);
+    		$("#intro2").show();
+    		}); 
 });
 
 
