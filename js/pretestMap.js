@@ -76,7 +76,7 @@
 	    });
 	    
 	    //questions
-	    var targets = shuffle.array(oiiNexus.config.place).slice(0,config.rep);
+	    var targets = oiiNexus.config.place.slice(0,config.rep);
 	    oiiNexus.nextQ = function() {
 		 if (targets.length > 0) { //not finished questions in this section
 			var tg = targets.shift();      

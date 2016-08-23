@@ -34,8 +34,8 @@
 		  	["pretestPathLength","mainPathLength"]
 		  ]),
 		  "mainData":"train.json",
-		  "place": ["Cardiff", "Edinburgh", "Glasgow", "Leicester", "Leeds", "Nottingham",
-		  	"Birmingham","Bristol","Manchester"],//"Sheffield","Liverpool","Newcastle upon Tyne"],
+		  "place": shuffle.array(["Cardiff", "Edinburgh", "Glasgow", "Leicester", "Leeds", "Nottingham",
+		  	"Birmingham","Bristol","Manchester"]),//"Sheffield","Liverpool","Newcastle upon Tyne"],
 		  "minTime": 10000,
 		  "maxTime": 30000
 		}

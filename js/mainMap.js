@@ -1,7 +1,6 @@
 ;(function(undefined) {
 "use strict";
-
-console.log("loading mainMap...");
+	
 	if (typeof oiiNexus === 'undefined')
 		throw 'oiiNexus is not declared';
 
@@ -46,8 +45,10 @@ console.log("loading mainMap...");
 			n.y=n.layouts[oiiNexus.CONDITION].y;
 		});
 		sig.refresh();
+		
+		var pretestMapRep=oiiNexus["pretestMap"].rep;
 
-		var targets = shuffle.array(oiiNexus.config.place).slice(0,this.rep);
+		var targets = oiiNexus.config.place.slice(pretestMapRep,pretestMapRep+this.rep);
 		var t;
 		oiiNexus.nextQ = function() {
 			if (targets.length > 0) { //more questions in this section
