@@ -92,8 +92,8 @@ path:hover {
 	position: absolute;
 	left: 350px;
 	top: 50px;
-	display: none;
 	max-width: 1500px;
+	margin-right: 50px;
 }
 
 #intro2 h1 {
