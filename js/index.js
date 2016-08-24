@@ -198,6 +198,10 @@ $(function(){
     	$("#introbtn").click(function() {
     		//LOG
     		var uid=$("#userid").val();
+    		if (uid=="") {
+    			$("#intro-text").css("color","red");
+    			return false;
+    		}
 		//Log on server
 		oiiNexus.dblogger(uid,"intro",{"detected_userid":oiiNexus.USER_ID,"submitted_userid":uid,"condition":oiiNexus.CONDITION});
     		if (uid!=oiiNexus.USER_ID) {
