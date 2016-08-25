@@ -117,7 +117,16 @@ path:hover {
 	margin-right: 15px;
 }
 
+#mobilewarning {
+	display: none;
+}
 
-
-
-
+@media only screen and (max-width: 1000px) {
+	#mobilewarning {
+		display: block;
+		width: 100%;
+		margin: 10px;
+		padding: 10px;
+		background-color: #D00;
+	}
+}
