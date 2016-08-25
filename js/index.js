@@ -202,8 +202,14 @@ $(function(){
     			$("#intro-text").css("color","red");
     			return false;
     		}
+    		var ua="";
+    		try {
+    			ua=navigator.userAgent;
+    		} catch(err) {
+    			console.log("Could not get user-agent");
+    		}
 		//Log on server
-		oiiNexus.dblogger(uid,"intro",{"detected_userid":oiiNexus.USER_ID,"submitted_userid":uid,"condition":oiiNexus.CONDITION});
+		oiiNexus.dblogger(uid,"intro",{"detected_userid":oiiNexus.USER_ID,"submitted_userid":uid,"condition":oiiNexus.CONDITION,"user_agent":ua});
     		if (uid!=oiiNexus.USER_ID) {
     			oiiNexus.USER_ID=uid;
     		}
