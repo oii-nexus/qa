@@ -57,7 +57,6 @@ $(function(){
 		var parent=element.parent();
 		parent.children("input[type!=hidden]").prop("required",false).prop("disabled",true).val("");
 		var hinput=parent.children("input[type=hidden]");
-		console.log(hinput);
 		if (hinput.length===0) {
 			hinput=$('<input type="hidden"></input>').attr("name",element.data("target")).appendTo(parent);
 		}
@@ -111,7 +110,7 @@ $(function(){
 		Please enter the first three letters/numbers of your postcode (e.g., OX1).<br/>
 		<input name="location" size="3" type="text" required><a href="javascript:void(0)" class="reset" data-target="location">(reset)</a><br/>
 		<a href="javascript:void(0)" class="autofill" data-target="location" data-value="notuk">I do not live in the UK.</a><br/>
-		<a href="javascript:void(0)" class="autofill" data-taret="location" data-value="pnts">I prefer not to say.</a>
+		<a href="javascript:void(0)" class="autofill" data-target="location" data-value="pnts">I prefer not to say.</a>
 	</dd>
 
 	<dt>How many years have you lived in the UK?
@@ -119,7 +118,7 @@ $(function(){
 		<input name="uk" size="3" type="number" min="0" step="any" required> years
 			<span class="label">&nbsp;</span> <a href="javascript:void(0)" class="reset" data-target="location">(reset)</a><br/>
 		<a href="javascript:void(0)" class="autofill" data-target="uk" data-value="notuk">I do not live in the UK</a><br/>
-		<a href="javascript:void(0)" class="autofill" data-taret="uk" data-value="pnts">I prefer not to say</a>
+		<a href="javascript:void(0)" class="autofill" data-target="uk" data-value="pnts">I prefer not to say</a>
 	</dd>
 	
 	<dt>How familiar you feel you are with UK geography?</dt>
