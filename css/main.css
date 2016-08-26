@@ -130,3 +130,36 @@ path:hover {
 		background-color: #D00;
 	}
 }
+
+/*For postq*/
+#postq {
+	display: none;
+	position: absolute;
+	left:0;
+	top:0;
+	padding: 20px;
+	width: 100%;
+	z-index: 101;
+	background-color: #FFF;
+}
+
+#postq dl {
+	margin-left: 15px;
+}
+#postq dt {
+	margin-top: 30px;
+	margin-bottom: 10px;
+}
+
+#postq a.reset {
+	display: none;
+}
+
+#postq a.selected, :checked+span {
+	font-weight: bold;
+	color: #009900;
+}
+
+#postq input:valid[type=text], input:valid[type=number] {
+	outline: #009900 solid thin;
+}

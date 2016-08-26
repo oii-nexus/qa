@@ -20,9 +20,11 @@
 <script src="js/mainMap.js"></script>
 <script src="js/mainPathLength.js"></script>
 <script src="js/mainDegree.js"></script>
+<script src="js/postq.js"></script>
 
 <!--CSS-->
 <link rel="stylesheet" href="css/main.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="css/vas.css" type="text/css" media="screen" />
 <title>Visualization testing</title>
 </head>
 <body>
@@ -71,6 +73,103 @@
 </ul>
 
 <p>If you have read and reviewed the information above and agree to participate in the study, please click the "I agree to participate in the study" button to begin.</p>
+</div>
+<div id="postq">
+<p>Thank you for completing our experiment.</p>
+<p>We are really grateful for your time. If you could answer a few more questions about your background it would greatly help this academic study.</p>
+<form action="postq.php" method="post">
+<dl>
+	<dt>Gender</dt>
+	<dd>
+		<label><input type="radio" name="gender" value="male" required><span>Male</span></label><br/>
+		<label><input type="radio" name="gender" value="female" required><span>Female</span></label><br/>
+		<label><input type="radio" name="gender" value="other" required><span>Other</span></label><br/>
+		<label><input type="radio" name="gender" value="pnts" required><span>Prefer not to say</span></label>
+	</dd>
+	
+	<dt>Age</dt>
+	<dd>
+		<label><input type="radio" name="age" value="0-18" required><span>0-18</span></label><br/>
+		<label><input type="radio" name="age" value="19-25" required><span>19-25</span></label><br/>
+		<label><input type="radio" name="age" value="26-35" required><span>26-35</span></label><br/>
+		<label><input type="radio" name="age" value="36-45" required><span>36-45</span></label><br/>
+		<label><input type="radio" name="age" value="45-55" required><span>46-55</span></label><br/>
+		<label><input type="radio" name="age" value="56+" required><span>56+</span></label><br/>
+		<label><input type="radio" name="age" value="pnts" required><span>Prefer not to say</span></label>
+	</dd>
+	
+	<dt>Where do you live in the UK?</dt>
+	<dd>
+		Please enter the first three letters/numbers of your postcode (e.g., OX1).<br/>
+		<input name="location" size="3" type="text" required><a href="javascript:void(0)" class="reset" data-target="location">(reset)</a><br/>
+		<a href="javascript:void(0)" class="autofill" data-target="location" data-value="notuk">I do not live in the UK.</a><br/>
+		<a href="javascript:void(0)" class="autofill" data-target="location" data-value="pnts">I prefer not to say.</a>
+	</dd>
+
+	<dt>How many years have you lived in the UK?
+	<dd>
+		<input name="uk" size="3" type="number" min="0" step="any" required> years
+			<span class="label">&nbsp;</span> <a href="javascript:void(0)" class="reset" data-target="location">(reset)</a><br/>
+		<a href="javascript:void(0)" class="autofill" data-target="uk" data-value="notuk">I do not live in the UK</a><br/>
+		<a href="javascript:void(0)" class="autofill" data-target="uk" data-value="pnts">I prefer not to say</a>
+	</dd>
+	
+	<dt>How familiar you feel you are with UK geography?</dt>
+	<dd>Please click on the line at the point that best reflects your answer.<br/>
+		<div class="vas">
+			<div class="vas-label">Not at all familiar</div>
+			<div class="vas-scale">
+				<div class="vas-line"></div>
+				<div class="vas-dot"></div>
+				<input type="hidden" name="ukgeo" value="NA">
+			</div>
+			<div class="vas-label">Extremely familiar</div>
+		</div>
+	</dd>
+	
+	<dt>Have you previously seen network visualizations?</dt>
+	<dd>
+		<label><input type="radio" name="netvis" value="yes" required><span>Yes</span></label><br/>
+		<label><input type="radio" name="netvis" value="no" required><span>No</span></label><br/>
+		<label><input type="radio" name="netvis" value="unsure" required><span>Unsure</span></label>
+	</dd>
+
+	<dt>How good do you feel you are at reading network visualizations?</dt>
+	<dd>Please click on the line at the point that best reflects your answer.<br/>
+	
+		<div class="vas">
+			<div class="vas-label">Poor</div>
+			<div class="vas-scale">
+				<div class="vas-line"></div>
+				<div class="vas-dot"></div>
+				<input type="hidden" name="netvis2" value="NA">
+			</div>
+			<div class="vas-label">Excellent</div>
+		</div>
+	</dd>
+	
+	<dt>How good you do feel you are at reading maps?</dt>
+	<dd>Please click on the line at the point that best reflects your answer.</br>
+		<div class="vas">
+			<div class="vas-label">Poor</div>
+			<div class="vas-scale">
+				<div class="vas-line"></div>
+				<div class="vas-dot"></div>
+				<input type="hidden" name="maps" value="NA">
+			</div>
+			<div class="vas-label">Excellent</div>
+		</div>
+	</dd>
+
+	<dt>Is there anything else you would like to share with us? (optional)</dt>
+	<dd>
+		<textarea name="other" cols=100 rows=25></textarea>
+	</dd>
+</dl>
+
+<p>Thank you. After clicking "Finish" you will automatically be taken back to Prolific.ac. Your bonus will be paid within one week.</p>
+<input type="submit" value="Finish" />
+</form>
 </div>
 </body>
 </html>

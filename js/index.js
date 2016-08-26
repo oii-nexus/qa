@@ -28,7 +28,7 @@
 	// oiiNexus is a global variable
 	window.oiiNexus={
 		config:{
-		  "section":shuffle.array([
+		  "section": shuffle.array([
 		  	["pretestMap","mainMap"],
 		  	["pretestDegree","mainDegree"],
 		  	["pretestPathLength","mainPathLength"]
@@ -146,8 +146,11 @@
     oiiNexus.nextSection = function() { //can use oiiNexus. or this.
       oiiNexus.questions = [];
       $('#question, #mask').hide();
+
       if (oiiNexus.config.section.length === 0) {
-        window.location.href = "postq.php?prolific_pid="+oiiNexus.USER_ID;
+        //window.location.href = "postq.php?prolific_pid="+oiiNexus.USER_ID;
+        //special case. show postq
+        oiiNexus["postq"].execute();
       }
       else {
         oiiNexus.section = oiiNexus.config.section[0].shift();
