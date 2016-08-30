@@ -29,7 +29,7 @@
 	window.oiiNexus={
 		config:{
 		  "section": shuffle.array([
-		  	["pretestMap","mainMap"],
+		  	shuffle.array(["pretestMap","mainMap"]),
 		  	["pretestDegree","mainDegree"],
 		  	["pretestPathLength","mainPathLength"]
 		  ]),
@@ -41,6 +41,7 @@
 		}
 	
 	};
+	//console.log(oiiNexus.config.section);
 	
 	$.get(oiiNexus.config.mainData, function(data) {	//Load main section data
 			oiiNexus.TRAIN_DATA=data;
