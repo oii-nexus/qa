@@ -5,7 +5,6 @@
 //NOTES
 //-there is a pan event associated with each zoom - which we don't want
 //  -if always a single pan after each zoom(?) easy to handle
-//-should resest pan/zoom of map between questions
 //-check Cambridge/S Cambridge issue on map if relevant
 //-cache path elmts in same loc-auth if too slow selecting on hover
 

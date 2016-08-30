@@ -8,7 +8,6 @@
 	oiiNexus.mainPathLength = {
       "name": "mainPathLength",
       "instruc": "This set of questions will again ask you to determine the network distance between two nodes (circles). Remember that the \"distance\" is the number of edges (lines) between two nodes.",
-      "instruc2": "<h1>Network distance</h1><p>Distance is measured as the number of edges (lines) between two nodes. Two nodes directly connected are said to have a distance of 1. If is only possible to go from one node to another through a third node, then this is distance 2 (A->B->C). If it is only possible to go from one node to another through two additional nodes, this is distance 3 (A->B->C->D).</p><img src='pretest/path_distance.svg'>",
       "rep": 3,
       "targets":[["Manchester","London"],["Birmingham","Leeds"],["York","Leicester"],
       	["City of Edinburgh","London"]],
