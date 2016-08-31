@@ -82,7 +82,7 @@
 		var r=Math.random();
 		if (r<0.33) {
 			return "geo";
-		} else if (r < 0.67) {
+		} else if (r < 0.68) {
 			return "pseudo-geo";
 		} else {
 			return "fr";
