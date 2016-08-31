@@ -58,6 +58,7 @@
 		 thisLA = $(this).attr('data-loc_auth');
 		 pathFill('#996600', thisLA);
 		 $mapHover.show().html(thisLA);
+		 oiiNexus.currentQ.action.push(thisLA);
 	    });
 	    $path.mousemove( function(evt) {
 		 $mapHover.css({left: (evt.pageX + 14 + 'px'), top: evt.pageY - 5 + 'px'});
