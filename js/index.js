@@ -80,9 +80,9 @@
 	oiiNexus.CONDITION=(function() {//Experimental condition
 		//Randomize condition
 		var r=Math.random();
-		if (r<0.34) {
+		if (r<0.25) {
 			return "geo";
-		} else if (r < 0.74) {
+		} else if (r < 0.75) {
 			return "pseudo-geo";
 		} else {
 			return "fr";
