@@ -9535,7 +9535,7 @@
         prefix = settings('prefix') || '',
         size = node[prefix + 'size'];
 
-    if (size < settings('labelThreshold'))
+    if (!node.forceLabel && size < settings('labelThreshold'))
       return;
 
     if (!node.label || typeof node.label !== 'string')

@@ -7,9 +7,9 @@
 	//callback for mainMap section
 	oiiNexus.mainMap = {
 		 "name": "mainMap",
-		 "instruc": "This set of questions will ask you to locate three UK cities on a network diagram. Each city is represented as a node (circle) within the network.",
+		 "instruc": "This set of questions will ask you to locate three countries on the network diagram. Each country is represented as a node (circle) within the network.",
 		 "rep": 3,
-		 "question": "Please click on the following city:",
+		 "question": "Please click on the following country:",
 		 "execute":function(){
 	
 	
@@ -27,6 +27,7 @@
 			 defaultEdgeColor: '#AAAAAA',
 			 edgeColor: 'default',
 			 labelThreshold: 100,
+			 defaultEdgeType: "curve",
 			 minNodeSize: 4,
 			 maxNodeSize: 4
 			}
@@ -52,7 +53,7 @@
 		var t;
 		oiiNexus.nextQ = function() {
 			if (targets.length > 0) { //more questions in this section
-				t = targets.shift();    //pop new target answer off front of tagets array
+				t = targets.shift();    //pop new target answer off front of targets array
 			
 				//set up log for new question
 				oiiNexus.currentQ = {target: t, action: [], condition: oiiNexus.CONDITION};

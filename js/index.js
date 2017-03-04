@@ -29,15 +29,11 @@
 	window.oiiNexus={
 		config:{
 		  "section": shuffle.array([
-		  	shuffle.array(["pretestMap","mainMap"]),
-		  	["pretestDegree","mainDegree"],
-		  	["pretestPathLength","mainPathLength"]
+		  	["adjacency"],["group_node"],["group_net"],["group_only"],["cc"]
 		  ]),
-		  "mainData":"train.json",
-		  "place": shuffle.array(["Cardiff", "Edinburgh", "Glasgow", "Leicester", "Leeds", "Nottingham",
-		  	"Birmingham","Bristol","Manchester"]),//"Sheffield","Liverpool","Newcastle upon Tyne"],
+		  "mainData":"immigration.json",
 		  "minTime": 10000,
-		  "maxTime": 30000
+		  "maxTime": 120000 //max time to 2 minutes
 		}
 	
 	};
@@ -80,10 +76,8 @@
 	oiiNexus.CONDITION=(function() {//Experimental condition
 		//Randomize condition
 		var r=Math.random();
-		if (r<0.25) {
+		if (r<0.5) {
 			return "geo";
-		} else if (r < 0.75) {
-			return "pseudo-geo";
 		} else {
 			return "fr";
 		}
@@ -117,6 +111,13 @@
         oiiNexus.recordAnswer($(this).html());
       });
     };
+    
+    oiiNexus.addNumberInput = function() {
+		$('#question-var').append('<br><br><input name="answer" id="numInput" type="number"><br/>');
+        	var btn=$("<div></div>").attr("class","btn").text("Submit").click(function() {
+        		oiiNexus.recordAnswer($("#numInput").val());
+    		}).appendTo('#question-var');
+    	}
     
     oiiNexus.updateTimer=function (timeStarted) {
         $("#elapsed").width((Date.now() - timeStarted)/oiiNexus.config.maxTime*100 + '%');
@@ -228,7 +229,7 @@ $(function(){
 		
 		$('#intro2').html("<p>Please try to answer as best you can, but do not worry if you cannot answer every question. For each correct answer, you will be paid a <strong>bonus of £0.075</strong>.</p><p>For each question, you can <strong>use your mouse to pan and zoom the visualization</strong>. Click and drag to move the visualization, and use the scroll wheel on your mouse to zoom.</p><p>For each question you will have a maximum of " + (oiiNexus.config.maxTime/1000) + " seconds in order to ensure you finish the study in a reasonable amount of time. In order to prevent undue rushing, each question requires you to take at least " + (oiiNexus.config.minTime/1000) + " seconds.</p></div><h1>Network diagrams</h1><div class=\"col1\"><p>A network diagram is a pictorial representation of the connections between entities. One specific example is a network diagram of daily commutes. Each city is represented as a <strong>node (circle)</strong> and an <strong>edge (line)</strong> between two nodes represents a connection. In some of the examples in this task, the nodes will be cities in the United Kingdom and edges will indicate that a large number of people commute between the cities by train.</p><p>In the example image, there are five nodes (A, B, C, D, and E). In this example, each node represents a city. The edges (lines) show popular commutes. By looking at the diagram, we can see that people commute between, for example, A & B, A & C, and A & E. No one, however, commutes between cities A & D (there is no edge).</p></div><div class=\"col2\"><img src=\"images/network_intro.svg\"></div>");
     		$("#intro2").show();
-    		}); 
+    		});
 });
 
 
