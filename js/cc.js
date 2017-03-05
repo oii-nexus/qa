@@ -28,7 +28,8 @@
 			 edgeColor: 'default',
 			 labelThreshold: 100,
 			 minNodeSize: 4,
-			 maxNodeSize: 4
+			 maxNodeSize: 4,
+			 defaultEdgeType: "curve"
 			}
 		});
 		sigma.utils.logger(sig);
@@ -37,7 +38,30 @@
 			oiiNexus.recordAnswer(evt.data.node.id);
 		});
 
-
+		sig.graph.clear();
+		sig.graph.read(oiiNexus.TRAIN_DATA);
+		sig.refresh();
+		
+		var map = L.map('map-container', {
+		  layers: [],
+		  // avoid unexpected moves:
+		  scrollWheelZoom: 'center',
+		  doubleClickZoom: 'center',
+		  bounceAtZoomLimits: false,
+		  keyboard: false,
+		  crs: L.CRS.EPSG4326,
+		  zoom: 1,
+		  center: [0,0]
+		});//.setView([0, 0], 1)// Init view centered
+		
+		if (oiiNexus.CONDITION=="geo") {
+			var geojson = new L.geoJson(oiiNexus.MAP).addTo(map);		
+			geojson.setStyle({"weight":2,"fill":false,"color":"#666666"});
+		}
+		
+		var leafletPlugin = sigma.plugins.leaflet(sig, map, {});
+		leafletPlugin.enable();
+		
 		var targets = shuffle.array(this.data).slice(0,this.rep);
 		var t;
 		var config=this;
@@ -50,15 +74,9 @@
 				//set up log for new question
 				oiiNexus.currentQ = {target: t, action: [], condition: oiiNexus.CONDITION};
 
-				//Load/Refresh the network	   
-				sig.graph.clear();
-				sig.graph.read(oiiNexus.TRAIN_DATA);
-				sig.graph.nodes().forEach(function(n) {
-					n.x=n.layouts[oiiNexus.CONDITION].x;
-					n.y=n.layouts[oiiNexus.CONDITION].y;
-				});
-				sig.refresh();
+				//Load/Refresh the network
 				sig.cameras[0].goTo({"x":0,"y":0,"angle":0,"ratio":1}); //recenter and zoom
+				leafletPlugin.fitBounds();
 				oiiNexus.currentQ.action=[]; //Reset to clear recenter/zoom actions
 			
 				//#Which t.from country has the most links to t.to?
@@ -67,6 +85,7 @@
 			} else  {
 	 			$("#question-var").css("font-weight","900");
 				$("#color_legend").hide();
+				leafletPlugin.kill();
 		 		oiiNexus.finishSection();
 		 	}
 		}

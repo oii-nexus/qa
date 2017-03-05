@@ -5,14 +5,19 @@ html,body {
 	font-family: sans-serif;
 	line-height: 1.25em;
 }
-#graph-container {
+#graph-container, #map-container {
 	position: absolute;
 	top: 15px;
 	bottom: 15px;
 	right: 15px;
 	left: 276px;
-	background-color: #fff;
 }
+
+#map-container {
+	transition: visibility 0.3s, opacity 0.3s linear;
+	background-color: #FFF;
+}
+
 #main-panel {
   margin-top: 50px;
   margin-left: 25px;
@@ -60,21 +65,6 @@ html,body {
   height: 100%;
   width: 0%;
   background-color: #bbb;
-}
-path {
-  stroke-width: 500;
-  stroke: #000;
-  background-color: #bbb;
-  fill: #bbb;
-}
-path:hover {
-  cursor: pointer;
-}
-#map-hover {
-  width: 100px;
-  position: absolute;
-  font-weight: 900;
-  pointer-events: none;
 }
 #mask {
   position: absolute;

@@ -29,7 +29,8 @@
 	window.oiiNexus={
 		config:{
 		  "section": shuffle.array([
-		  	["adjacency"],["group_node"],["group_net"],["group_only"],["cc"]
+		  	["adjacency"],
+		  	["group_node"],["group_net"],["group_only"],["cc"]
 		  ]),
 		  "mainData":"immigration.json",
 		  "minTime": 5000,
@@ -41,7 +42,19 @@
 	
 	$.get(oiiNexus.config.mainData, function(data) {	//Load main section data
 			oiiNexus.TRAIN_DATA=data;
+			oiiNexus.TRAIN_DATA["nodes"].forEach(function(n) {
+				n.x=n.layouts[oiiNexus.CONDITION].x;
+				n.y=n.layouts[oiiNexus.CONDITION].y;
+				n.lat=-1*n.layouts[oiiNexus.CONDITION].y;
+				n.lng=n.layouts[oiiNexus.CONDITION].x;
+			});
+
 	});
+	
+	$.get("map.json", function(data) {	//Load map data
+		oiiNexus.MAP=data;		
+	});
+
 	
 	
 	window.mask = {//also a global variable
@@ -138,7 +151,8 @@
     }
     
     oiiNexus.finishSection = function() {
-      $('#graph-container').html('');
+      $('#container').html('');
+      $('#container').html('<div id="map-container"></div><div id="graph-container"></div>');
       //track[section.name] = {section: section, questions: questions}; //log section results
       //Send data for section to server
       oiiNexus.dblogger(oiiNexus.USER_ID,oiiNexus.section,oiiNexus.questions);
