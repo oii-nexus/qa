@@ -10,7 +10,7 @@ html,body {
 	top: 15px;
 	bottom: 15px;
 	right: 15px;
-	left: 15px;
+	left: 276px;
 	background-color: #fff;
 }
 #main-panel {
@@ -121,6 +121,34 @@ path:hover {
 
 #mobilewarning {
 	display: none;
+}
+
+#color_legend {
+	position: absolute;
+	width: 25%;
+	max-width:500px;
+	min-width: 250px;
+	height: 200px;
+	left: 10px;
+	bottom: 10px;
+	font-size: 12pt;
+	font-weight: bold;
+	display: none;
+}
+
+#color_legend ul {
+	list-style: none;
+}
+
+#color_legend li {
+	padding-top: 5px;
+}
+
+.color-block {
+	display: block;
+	float: left;
+	width: 15px;
+	height: 15px;
 }
 
 @media only screen and (max-width: 1000px) {

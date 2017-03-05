@@ -42,6 +42,7 @@
 		var t;
 		var config=this;
 		$("#question-var").css("font-weight","normal");
+		$("#color_legend").show();
 		oiiNexus.nextQ = function() {
 			if (targets.length > 0) { //more questions in this section
 				t = targets.shift();    //pop new target answer off front of tagets array
@@ -63,11 +64,11 @@
 				//#Which t.from country has the most links to t.to?
 				$('#question-var').html("Please click the <strong>"+t.from+"</strong> country with the most links to <strong>"+t.to+"</strong>");
 				oiiNexus.startQ();  //ask new question - startQ will call nextQ ...
-			}
-		 		else  {
-	 				$("#question-var").css("font-weight","900");
-		 			oiiNexus.finishSection();
-		 		}
+			} else  {
+	 			$("#question-var").css("font-weight","900");
+				$("#color_legend").hide();
+		 		oiiNexus.finishSection();
+		 	}
 		}
 		oiiNexus.nextQ(); //ask first question
 	}

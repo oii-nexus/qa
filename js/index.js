@@ -32,7 +32,7 @@
 		  	["adjacency"],["group_node"],["group_net"],["group_only"],["cc"]
 		  ]),
 		  "mainData":"immigration.json",
-		  "minTime": 10000,
+		  "minTime": 5000,
 		  "maxTime": 90000 //max time to 90 seconds
 		}
 	
@@ -114,7 +114,7 @@
     
     oiiNexus.addNumberInput = function() {
 		$('#question-var').append('<br><br><input name="answer" id="numInput" type="number"><br/>');
-        	var btn=$("<div></div>").attr("class","btn").text("Submit").click(function() {
+        	var btn=$("<div></div>").attr("class","btn").text("Record Answer").click(function() {
         		oiiNexus.recordAnswer($("#numInput").val());
     		}).appendTo('#question-var');
     	}

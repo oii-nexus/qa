@@ -37,6 +37,7 @@
 		var t;
 		var config=this;
 		//$("#question-var").css("font-weight","normal");
+  		$("#color_legend").show();
 		oiiNexus.nextQ = function() {
 			if (targets.length > 0) { //more questions in this section
 				t = targets.shift();    //pop new target answer off front of tagets array
@@ -59,11 +60,10 @@
 				//oiiNexus.addButtons(['Orange','Green','I don\'t know']);   //show answer buttons
 				oiiNexus.addNumberInput();
 				oiiNexus.startQ();  //ask new question - startQ will call nextQ ...
-			}
-		 		else  {
-	 				//$("#question-var").css("font-weight","900");
-		 			oiiNexus.finishSection();
-		 		}
+			} else  {
+		  		$("#color_legend").hide();
+	 			oiiNexus.finishSection();
+	 		}
 		}
 		oiiNexus.nextQ(); //ask first question
 	}

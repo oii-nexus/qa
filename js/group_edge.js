@@ -36,6 +36,7 @@
 		var targets = shuffle.array(this.data).slice(0,this.rep);
 		var t;
 		var config=this;
+		$("#color_legend").show();
 		oiiNexus.nextQ = function() {
 			if (targets.length > 0) { //more questions in this section
 				t = targets.shift();    //pop new target answer off front of tagets array
@@ -58,8 +59,10 @@
 				//oiiNexus.addButtons(['Orange','Green','I don\'t know']);   //show answer buttons
 				oiiNexus.addNumberInput();
 				oiiNexus.startQ();  //ask new question - startQ will call nextQ ...
-			}
-		 		else  oiiNexus.finishSection();
+			} else {
+ 				$("#color_legend").hide();
+		 		oiiNexus.finishSection();
+ 			}
 		}
 		oiiNexus.nextQ(); //ask first question
 	}
