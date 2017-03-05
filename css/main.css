@@ -18,6 +18,10 @@ html,body {
 	background-color: #FFF;
 }
 
+.leaflet-control-attribution {
+	display:none;
+}
+
 #main-panel {
   margin-top: 50px;
   margin-left: 25px;
