@@ -30,7 +30,7 @@
 		config:{
 		  "section": shuffle.array([
 		  	["adjacency"],
-		  	["group_node"],["group_net"],["group_only"],["cc"]
+		  	["group_edge"],["group_node"],["group_net"],["group_only"],["cc"]
 		  ]),
 		  "mainData":"immigration.json",
 		  "minTime": 5000,
