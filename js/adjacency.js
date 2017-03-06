@@ -33,7 +33,7 @@
 			}
 		});
 		sigma.utils.logger(sig);
-		
+
 		sig.graph.clear();
 		sig.graph.read(oiiNexus.TRAIN_DATA);
 		
@@ -47,7 +47,9 @@
 		  crs: L.CRS.EPSG4326,
 		  zoom: 1,
 		  center: [0,0]
-		});//.setView([0, 0], 1)// Init view centered
+		}).addEventListener("zoomend",function(evt) {
+			 oiiNexus.currentQ.action.push({type: "zoom",details: evt.target._zoom});
+		});
 		
 		if (oiiNexus.CONDITION=="geo") {
 			var geojson = new L.geoJson(oiiNexus.MAP).addTo(map);		
@@ -55,8 +57,7 @@
 		}
 		
 		var leafletPlugin = sigma.plugins.leaflet(sig, map, {});
-		leafletPlugin.enable();
-		
+		leafletPlugin.enable();		
 
 		var targets = shuffle.array(this.data).slice(0,this.rep);
 		var t;
