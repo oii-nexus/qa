@@ -126,7 +126,7 @@
     };
     
     oiiNexus.addNumberInput = function() {
-		$('#question-var').append('<br><br><input name="answer" id="numInput" type="number"><br/>');
+		$('#question-var').append('<br><br><input name="answer" id="numInput" type="text"><br/>');
         	var btn=$("<div></div>").attr("class","btn").text("Record Answer").click(function() {
         		oiiNexus.recordAnswer($("#numInput").val());
     		}).appendTo('#question-var');
