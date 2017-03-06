@@ -9,11 +9,10 @@
 		 "name": "cc",
 		 "instruc": "This section will ask you to find the country with the largest number of links to a specific geographic region.",
 		 "rep": 5,
-		 "data":[{"from":"European","to":"Asia"},{"from":"Middle Eastern &#38; North African","to":"Asia"},{"from":"Oceanian","to":"Asia"},{"from":"South American","to":"Asia"},{"from":"Asian","to":"Europe"},{"from":"Middle Eastern &#38; North African","to":"Europe"},{"from":"Oceanian","to":"Europe"},{"from":"South American","to":"Europe"},{"from":"Sub-Saharan African","to":"Europe"},{"from":"Asian","to":"Middle East &#38; North Africa"},{"from":"European","to":"Middle East &#38; North Africa"},{"from":"Sub-Saharan African","to":"North America &#38; Caribbean"},{"from":"European","to":"Oceania"},{"from":"Asian","to":"South America"},{"from":"European","to":"South America"},{"from":"European","to":"Sub-Saharan Africa"},{"from":"Middle Eastern &#38; North African","to":"Sub-Saharan Africa"}] 
-,
+		 "data":[{"from":"Middle Eastern &#38; North African","to":"Asia"},{"from":"Oceanian","to":"Asia"},{"from":"South American","to":"Asia"},{"from":"Asian","to":"Europe"},{"from":"Middle Eastern &#38; North African","to":"Europe"},{"from":"Oceanian","to":"Europe"},{"from":"South American","to":"Europe"},{"from":"Sub-Saharan African","to":"Europe"},{"from":"Asian","to":"Middle East &#38; North Africa"},{"from":"European","to":"Middle East &#38; North Africa"},{"from":"Middle Eastern &#38; North African","to":"North America &#38; Caribbean"},{"from":"Sub-Saharan African","to":"North America &#38; Caribbean"},{"from":"European","to":"Oceania"},{"from":"Asian","to":"South America"},{"from":"European","to":"South America"},{"from":"European","to":"Sub-Saharan Africa"},{"from":"Middle Eastern &#38; North African","to":"Sub-Saharan Africa"}],
 		 "execute": function(){
 	
-		//$('#question-text').html(this.question);
+		$('#question-text').html("");
 		mask.off();
 
 		var sig = new sigma({

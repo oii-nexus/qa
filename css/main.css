@@ -124,7 +124,7 @@ html,body {
 	min-width: 250px;
 	height: 200px;
 	left: 10px;
-	bottom: 10px;
+	bottom: 200px;
 	font-size: 12pt;
 	font-weight: bold;
 	display: none;
@@ -132,10 +132,16 @@ html,body {
 
 #color_legend ul {
 	list-style: none;
+	padding-top: 0;
 }
 
 #color_legend li {
 	padding-top: 5px;
+}
+
+#color_legend h1 {
+	font-size: 14pt;
+	padding-left: 15px;
 }
 
 .color-block {
