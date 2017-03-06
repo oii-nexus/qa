@@ -21,8 +21,8 @@
     
     sig.bind('hovers',function(evt) {
     	 if (evt.data.current.nodes.length>0) {
-    	 	oiiNexus.currentQ.action.push({type: "hover", id: evt.data.current.nodes});
-      	//console.log({type: "hover", id: evt.data.current.nodes});
+    	 	oiiNexus.currentQ.action.push({type: "hover", id: evt.data.current.nodes[0].id});
+      	//console.log({type: "hover", id: evt.data.current.nodes[0].id});
       }
     });
     
